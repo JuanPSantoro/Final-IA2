@@ -7,7 +7,7 @@ using UnityEngine;
 public class BuildEffectSO : EffectSO
 {
     public Buildings building;
-    public override void ExecuteEffect(WorldState ws)
+    public override WorldState ExecuteEffect(WorldState ws)
     {
         switch(building)
         {
@@ -18,5 +18,6 @@ public class BuildEffectSO : EffectSO
                 ws.farms = ExecuteInNumber(ws.farms, 1, 0); ;
                 break;
         }
+        return ws;
     }
 }

@@ -6,8 +6,9 @@ using UnityEngine;
 public class WoodEffectSO : EffectSO
 {
     public int woodAmount;
-    public override void ExecuteEffect(WorldState ws)
+    public override WorldState ExecuteEffect(WorldState ws)
     {
         ws.wood = ExecuteInNumber(ws.wood, woodAmount, 0, 9999);
+        return ws;
     }
 }

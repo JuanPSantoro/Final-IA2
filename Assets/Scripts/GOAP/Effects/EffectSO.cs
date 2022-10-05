@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class EffectSO : ScriptableObject
 {
     public EffectType effectType;
-    public abstract void ExecuteEffect(WorldState ws);
+    public abstract WorldState ExecuteEffect(WorldState ws);
 
     protected float ExecuteInNumber(float variableToChange, float value, float minAmount = -1, float maxAmount = -1)
     {

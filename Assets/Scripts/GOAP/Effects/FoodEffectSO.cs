@@ -8,8 +8,9 @@ public class FoodEffectSO : EffectSO
 {
     public int foodAmount;
 
-    public override void ExecuteEffect(WorldState ws)
+    public override WorldState ExecuteEffect(WorldState ws)
     {
         ws.food = ExecuteInNumber(ws.food, foodAmount, 0, 9999);
+        return ws;
     }
 }

@@ -10,15 +10,16 @@ public enum ItemType
 	Mace,
 	PastaFrola,
 
-	Scythe,
-	Hammer,
-	Axe,
-	Weapon
+	SCYTHE,
+	HAMMER,
+	AXE,
+	WEAPON
 }
 
 public class Item : MonoBehaviour
 {
 	public ItemType type;
+	public Targets target;
 	private Waypoint _wp;
 	private bool _insideInventory;
 

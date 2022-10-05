@@ -7,8 +7,9 @@ using UnityEngine;
 public class EnergyEffectSO : EffectSO
 {
     public float energy;
-    public override void ExecuteEffect(WorldState ws)
+    public override WorldState ExecuteEffect(WorldState ws)
     {
         ws.energy = ExecuteInNumber(ws.energy, energy, 0, 9999);
+        return ws;
     }
 }

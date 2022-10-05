@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7066233cc938f974884db44b4d4c82c2, type: 3}
-  m_Name: Farm Action
+  m_Name: Hunt
   m_EditorClassIdentifier: 
-  actionName: Farm
+  actionName: Hunt
   cost: 3
-  item: 6
+  target: 8
   preconditions:
-  - {fileID: 11400000, guid: eb331f0e241661343a4d322bbc646987, type: 2}
-  - {fileID: 11400000, guid: d4ff67e62d2704e449eeeea1e915ea6a, type: 2}
+  - {fileID: 11400000, guid: 4cfdb2f3e89760b4fbf014f5c555b2a8, type: 2}
   - {fileID: 11400000, guid: d3dd21d5298d9cd4e818f8dcd1dc3bce, type: 2}
-  - {fileID: 11400000, guid: be7f98ce0ec15d542b375b5fe8db0c22, type: 2}
+  - {fileID: 11400000, guid: 638e7054a147f464ebe4236ea3499590, type: 2}
   effects:
   - {fileID: 11400000, guid: d2b7669d1ccde4449aebab131ce3467c, type: 2}
-  - {fileID: 11400000, guid: 552495d31c014084a9ac0c586f167ca9, type: 2}
+  - {fileID: 11400000, guid: dd5015bea4679d643b11055df5356b37, type: 2}

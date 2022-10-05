@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ItemPreConditionSO : PreConditionSO
 {
-    public ItemType item;
+    public Items item;
     public override bool ExecutePreCondition(WorldState ws)
     {
         return ExecuteStringComparative(ws.tool, item.ToString());

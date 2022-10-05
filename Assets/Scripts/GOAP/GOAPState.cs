@@ -7,6 +7,8 @@ public class GoapState
 
 
     public GoapAction generatingAction = null;
+    public GoapActionSO generator = null;
+
     public int step = 0;
 
     #region CONSTRUCTOR
@@ -31,25 +33,27 @@ public class GoapState
     {
         var result =
             obj is GoapState other
-            && other.generatingAction == generatingAction  
-            && other.worldState.values.Count == worldState.values.Count
-            && other.worldState.values.All(kv => kv.In(worldState.values));
+            && other.generator == generator
+            && other.worldState.energy == worldState.energy
+            && other.worldState.food == worldState.food
+            && other.worldState.wood == worldState.wood
+            && other.worldState.tool == worldState.tool
+            && other.worldState.night == worldState.night
+            && other.worldState.hasPendingTask == worldState.hasPendingTask
+            && other.worldState.farms == worldState.farms
+            && other.worldState.houses == worldState.houses;
         return result;
     }
 
     public override int GetHashCode()
     {
-        return worldState.values.Count == 0 ? 0 : 31 * worldState.values.Count + 31 * 31 * worldState.values.First().GetHashCode();
+        return 0;
     }
 
     public override string ToString()
     {
         var str = "";
-        foreach (var kv in worldState.values.OrderBy(x => x.Key))
-        {
-            str += (string.Format("{0:12} : {1}\n", kv.Key, kv.Value));
-        }
-        return ("--->" + (generatingAction != null ? generatingAction.Name : "NULL") + "\n" + str);
+        return ("--->" + (generator != null ? generator.actionName : "NULL") + "\n" + str);
     }
 }
 
@@ -65,7 +69,6 @@ public struct WorldState
     public string tool;
     public bool night;
 
-    public int playerHP;
     public Dictionary<string, bool> values;
 
     public WorldState Clone()
@@ -81,8 +84,7 @@ public struct WorldState
             hasPendingTask = this.hasPendingTask,
             night = this.night,
 
-            playerHP = this.playerHP,
-            values = this.values.ToDictionary(kv => kv.Key, kv => kv.Value)
+            //values = this.values.ToDictionary(kv => kv.Key, kv => kv.Value)
         };
     }
 }

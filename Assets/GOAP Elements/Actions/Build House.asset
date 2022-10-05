@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7066233cc938f974884db44b4d4c82c2, type: 3}
+  m_Name: Build House
+  m_EditorClassIdentifier: 
+  actionName: Build House
+  cost: 3
+  target: 5
+  preconditions:
+  - {fileID: 11400000, guid: 28500383fc53b5e4290af9a912e927a4, type: 2}
+  - {fileID: 11400000, guid: e0a43fffc24f6654fba893f77c521b7f, type: 2}
+  - {fileID: 11400000, guid: fa643312a2772c6479d8de8b7fd6370a, type: 2}
+  - {fileID: 11400000, guid: eefda6b6cfd884a498103c8acb8a5ed5, type: 2}
+  effects:
+  - {fileID: 11400000, guid: c699438ce60fd9d4f88c55ceec595e63, type: 2}
+  - {fileID: 11400000, guid: 412881305c6a2304d82de5b4e652768b, type: 2}
+  - {fileID: 11400000, guid: 156b6d50582357d46be57fe2bbe7ee12, type: 2}
+  - {fileID: 11400000, guid: d2b7669d1ccde4449aebab131ce3467c, type: 2}

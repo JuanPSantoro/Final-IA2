@@ -45,8 +45,7 @@ public class AStarNormal<Node> where Node : class
             var candidate = state.open.OrderBy(x => state.fs[x]).First();
             state.current = candidate;
 
-			//Debug.Log(candidate);
-            DebugGoap(state);
+            //DebugGoap(state);
             if (satisfies(candidate))
             {
 				U.Log("SATISFIED");

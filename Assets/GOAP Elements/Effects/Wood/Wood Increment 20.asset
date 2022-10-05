@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0909b043ef970df4fa6514ac42d33f36, type: 3}
-  m_Name: Has Scythe
+  m_Script: {fileID: 11500000, guid: 2f449ed059f2383408531b8dcb7a20ca, type: 3}
+  m_Name: Wood Increment 20
   m_EditorClassIdentifier: 
-  comparative: 4
-  item: 6
+  effectType: 0
+  woodAmount: 20
