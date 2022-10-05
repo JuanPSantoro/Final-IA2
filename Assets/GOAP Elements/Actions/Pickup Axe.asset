@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7066233cc938f974884db44b4d4c82c2, type: 3}
   m_Name: Pickup Axe
   m_EditorClassIdentifier: 
-  actionName: PickUp Hammer
+  actionName: PickUp Axe
   cost: 5
   target: 2
   preconditions:

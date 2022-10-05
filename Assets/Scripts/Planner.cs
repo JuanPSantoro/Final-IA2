@@ -9,6 +9,8 @@ public class Planner : MonoBehaviour
 	private readonly List<Tuple<Vector3, Vector3>> _debugRayList = new List<Tuple<Vector3, Vector3>>();
 
     public List<GoapActionSO> actions;
+    public GoapObjectiveSO goal;
+    public GoapHeuristicSO heuristic;
 
 	private void Start ()
     {
@@ -32,23 +34,17 @@ public class Planner : MonoBehaviour
         initial.worldState = observedState;
         Debug.Log(observedState);
 
-        Func<GoapState, float> heuristc = (curr) =>
+        Func<GoapState, float> h = (curr) =>
         {
-            int count = 0;
-
-            if (curr.worldState.wood < 20)
-                count++;
-            /*if (curr.worldState.energy < 10)
-                count++;*/
-            return count;
+            return heuristic.ProcessHeuristic(curr.worldState);
         };
 
         Func<GoapState, bool> objective = (curr) =>
         {
-            return curr.worldState.wood >= 40;
+            return goal.Satisfies(curr.worldState);
         };
 
-		var plan = Goap.Execute(initial, null, objective, heuristc, actions);
+		var plan = Goap.Execute(initial, null, objective, h, actions);
 
 		if (plan == null)
 			Debug.Log("Couldn't plan");

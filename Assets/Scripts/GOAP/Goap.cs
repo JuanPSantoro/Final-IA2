@@ -70,11 +70,6 @@ public class Goap : MonoBehaviour
 
                 var asd = actions.Where(a => a.preconditions.All(pre => pre.ExecutePreCondition(curr.worldState))).ToList();
 
-                for (int i = 0; i < asd.Count; i++)
-                {
-                    Debug.Log(asd[i].actionName);
-                }
-
                 return asd.Aggregate(new FList<AStarNormal<GoapState>.Arc>(), (possibleList, action) =>
                 {
                     var newState = new GoapState(curr);

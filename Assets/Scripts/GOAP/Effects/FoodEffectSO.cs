@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Food Effect", menuName = "GOAP/Effects/Food", order = 58)]
-
 public class FoodEffectSO : EffectSO
 {
     public int foodAmount;

@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7066233cc938f974884db44b4d4c82c2, type: 3}
-  m_Name: Pickup Scythe
+  m_Script: {fileID: 11500000, guid: 29b748a16aeed7a4685cf6de53df4fd4, type: 3}
+  m_Name: Objective Wood
   m_EditorClassIdentifier: 
-  actionName: PickUp Scythe
-  cost: 5
-  target: 0
   preconditions:
-  - {fileID: 11400000, guid: d6dc3b2c685ead14784d6b28620567ac, type: 2}
-  effects:
-  - {fileID: 11400000, guid: 38227d3b25628854a986875eeb4fd29a, type: 2}
+  - {fileID: 11400000, guid: eb331f0e241661343a4d322bbc646987, type: 2}
+  - {fileID: 11400000, guid: 638e7054a147f464ebe4236ea3499590, type: 2}
