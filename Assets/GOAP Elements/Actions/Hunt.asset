@@ -17,8 +17,8 @@ MonoBehaviour:
   target: 8
   preconditions:
   - {fileID: 11400000, guid: 4cfdb2f3e89760b4fbf014f5c555b2a8, type: 2}
-  - {fileID: 11400000, guid: d3dd21d5298d9cd4e818f8dcd1dc3bce, type: 2}
+  - {fileID: 11400000, guid: 943d1f942b4240244a0922351bedcac9, type: 2}
   - {fileID: 11400000, guid: 638e7054a147f464ebe4236ea3499590, type: 2}
   effects:
-  - {fileID: 11400000, guid: d2b7669d1ccde4449aebab131ce3467c, type: 2}
-  - {fileID: 11400000, guid: dd5015bea4679d643b11055df5356b37, type: 2}
+  - {fileID: 11400000, guid: df3e06ec14b81c242a3a6dcc851305e7, type: 2}
+  - {fileID: 11400000, guid: bb651a46422357f458403be950fc8b73, type: 2}

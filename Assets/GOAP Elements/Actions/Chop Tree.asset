@@ -20,5 +20,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 331ea0feb08dd4b48b38deef5aa8c0da, type: 2}
   - {fileID: 11400000, guid: 6d944c38c86f65f48bfad9b2bd0eb03d, type: 2}
   effects:
-  - {fileID: 11400000, guid: df3e06ec14b81c242a3a6dcc851305e7, type: 2}
+  - {fileID: 11400000, guid: cdd1575dd92f841498da634268ed33e7, type: 2}
   - {fileID: 11400000, guid: 009894dab6cc68d45b89ad3d1fe63db2, type: 2}

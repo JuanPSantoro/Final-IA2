@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7066233cc938f974884db44b4d4c82c2, type: 3}
-  m_Name: Sleep
+  m_Name: Finish Last Taks
   m_EditorClassIdentifier: 
-  actionName: Sleep
-  cost: 1
-  target: 9
+  actionName: Finish Last Task
+  cost: 0
+  target: 6
   preconditions:
-  - {fileID: 11400000, guid: 9f91b62cf1bb77c428a9b72979523950, type: 2}
-  - {fileID: 11400000, guid: 42d23fa537d9b3041b6fa3076c0df64f, type: 2}
+  - {fileID: 11400000, guid: 4e76d7ccee8f4d048995686c6c4f10a9, type: 2}
   effects:
-  - {fileID: 11400000, guid: 171397ebb03f33947bd026ef9e3f01ff, type: 2}
+  - {fileID: 0}

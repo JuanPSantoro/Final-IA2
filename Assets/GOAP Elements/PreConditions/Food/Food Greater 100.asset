@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118ce4077ea255f47ae22100b498d46f, type: 3}
   m_Name: Food Greater 100
   m_EditorClassIdentifier: 
-  comparative: 0
+  comparative: 1
   foodAmount: 100

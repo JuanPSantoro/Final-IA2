@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7066233cc938f974884db44b4d4c82c2, type: 3}
-  m_Name: Build House
+  m_Name: Build Farm
   m_EditorClassIdentifier: 
-  actionName: Build House
+  actionName: Build Farm
   cost: 3
-  target: 5
+  target: 4
   preconditions:
-  - {fileID: 11400000, guid: fa643312a2772c6479d8de8b7fd6370a, type: 2}
-  - {fileID: 11400000, guid: 28500383fc53b5e4290af9a912e927a4, type: 2}
-  - {fileID: 11400000, guid: e0a43fffc24f6654fba893f77c521b7f, type: 2}
+  - {fileID: 11400000, guid: 1a349d5447852b74896e3799d40854f9, type: 2}
+  - {fileID: 11400000, guid: 50a07e956b9891042ba96c987c8368c1, type: 2}
+  - {fileID: 11400000, guid: 04cb807fb93c19e4ba52e93ba2812d30, type: 2}
   - {fileID: 11400000, guid: eefda6b6cfd884a498103c8acb8a5ed5, type: 2}
   effects:
   - {fileID: 11400000, guid: 32756fb50004128488ae1db1ad38ce84, type: 2}
-  - {fileID: 11400000, guid: c699438ce60fd9d4f88c55ceec595e63, type: 2}
-  - {fileID: 11400000, guid: 412881305c6a2304d82de5b4e652768b, type: 2}
-  - {fileID: 11400000, guid: 156b6d50582357d46be57fe2bbe7ee12, type: 2}
+  - {fileID: 11400000, guid: 3268f495fb6771a448eb6fd2478c0eb8, type: 2}
+  - {fileID: 11400000, guid: fe8ba7a55caa4b942aeda3c543764bd9, type: 2}
+  - {fileID: 11400000, guid: 305881692fbd8d441986e1234817fe2f, type: 2}
