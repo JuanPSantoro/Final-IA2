@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hunt
   m_EditorClassIdentifier: 
   actionName: Hunt
-  cost: 3
+  cost: 5
   target: 8
   preconditions:
   - {fileID: 11400000, guid: 4cfdb2f3e89760b4fbf014f5c555b2a8, type: 2}

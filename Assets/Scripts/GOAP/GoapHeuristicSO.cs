@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "Heuristic", menuName = "GOAP/Heuristic", order = 58)]
 public class GoapHeuristicSO : ScriptableObject
@@ -9,13 +10,7 @@ public class GoapHeuristicSO : ScriptableObject
 
     public float ProcessHeuristic(WorldState ws)
     {
-        int count = 0;
-
-        foreach (PreConditionSO currentPre in conditionsThatIncrementsHeuristic)
-        {
-            if (currentPre.ExecutePreCondition(ws))
-                count++;
-        }
-        return count;
+        var amount = conditionsThatIncrementsHeuristic.Where(currentPre => currentPre.ExecutePreCondition(ws)).Count();
+        return amount;
     }
 }

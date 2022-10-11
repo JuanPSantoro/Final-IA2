@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "Objective", menuName = "GOAP/Objective", order = 58)]
 public class GoapObjectiveSO : ScriptableObject
@@ -9,11 +10,6 @@ public class GoapObjectiveSO : ScriptableObject
 
     public bool Satisfies(WorldState ws)
     {
-        foreach (PreConditionSO currentPre in preconditions)
-        {
-            if (!currentPre.ExecutePreCondition(ws))
-                return false;
-        }
-        return true;
+        return !preconditions.Where(currentPre => !currentPre.ExecutePreCondition(ws)).Any();
     }
 }

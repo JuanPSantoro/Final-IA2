@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b748a16aeed7a4685cf6de53df4fd4, type: 3}
-  m_Name: Objective Wood
+  m_Name: Objective 1 Farm
   m_EditorClassIdentifier: 
   preconditions:
-  - {fileID: 11400000, guid: 04cb807fb93c19e4ba52e93ba2812d30, type: 2}
-  - {fileID: 11400000, guid: 1a349d5447852b74896e3799d40854f9, type: 2}
+  - {fileID: 11400000, guid: d4ff67e62d2704e449eeeea1e915ea6a, type: 2}

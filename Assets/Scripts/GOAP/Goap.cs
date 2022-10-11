@@ -54,7 +54,7 @@ public class Goap : MonoBehaviour
 
     public static IEnumerable<GoapActionSO> Execute(GoapState from, GoapState to, Func<GoapState, bool> satisfies, Func<GoapState, float> h, IEnumerable<GoapActionSO> actions)
     {
-        int watchdog = 200;
+        int watchdog = 2000;
 
         IEnumerable<GoapState> seq = AStarNormal<GoapState>.Run(
             from,
@@ -69,6 +69,13 @@ public class Goap : MonoBehaviour
                     watchdog--;
 
                 var asd = actions.Where(a => a.preconditions.All(pre => pre.ExecutePreCondition(curr.worldState))).ToList();
+
+                Debug.Log("---------------------------");
+                foreach (var current in asd)
+                {
+                    Debug.Log(current.actionName);
+                }
+                Debug.Log("---------------------------");
 
                 return asd.Aggregate(new FList<AStarNormal<GoapState>.Arc>(), (possibleList, action) =>
                 {
@@ -98,5 +105,4 @@ public class Goap : MonoBehaviour
 
         return seq.Skip(1).Select(x => x.generator);
     }
-
 }
