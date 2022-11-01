@@ -16,6 +16,8 @@ MonoBehaviour:
   cost: 5
   target: 3
   preconditions:
+  - {fileID: 11400000, guid: 4cfdb2f3e89760b4fbf014f5c555b2a8, type: 2}
+  - {fileID: 11400000, guid: d3dd21d5298d9cd4e818f8dcd1dc3bce, type: 2}
   - {fileID: 11400000, guid: fb53e8148ce345a4ea247f84ad5f7263, type: 2}
   effects:
   - {fileID: 11400000, guid: e719de3983e59e34d8e66e54af2a0aa9, type: 2}
