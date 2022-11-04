@@ -38,8 +38,6 @@ public class GoapState
             && other.worldState.food == worldState.food
             && other.worldState.wood == worldState.wood
             && other.worldState.tool == worldState.tool
-            && other.worldState.night == worldState.night
-            && other.worldState.hasPendingTask == worldState.hasPendingTask
             && other.worldState.farms == worldState.farms
             && other.worldState.houses == worldState.houses;
         return result;
@@ -64,10 +62,8 @@ public struct WorldState
     public int wood;
     public int food;
     public int farms;
-    public int houses;
-    public bool hasPendingTask;
+    public bool houses;
     public string tool;
-    public bool night;
 
     public Dictionary<string, bool> values;
 
@@ -80,11 +76,7 @@ public struct WorldState
             wood = this.wood,
             food = this.food,
             farms = this.farms,
-            houses = this.houses,
-            hasPendingTask = this.hasPendingTask,
-            night = this.night,
-
-            //values = this.values.ToDictionary(kv => kv.Key, kv => kv.Value)
+            houses = this.houses
         };
     }
 }

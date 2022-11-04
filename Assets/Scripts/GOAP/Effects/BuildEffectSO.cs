@@ -12,7 +12,7 @@ public class BuildEffectSO : EffectSO
         switch(building)
         {
             case Buildings.HOUSE:
-                ws.houses = ExecuteInNumber(ws.houses, 1, 0); ;
+                ws.houses = ExecuteInBool(ws.houses, true); ;
                 break;
             case Buildings.FARM:
                 ws.farms = ExecuteInNumber(ws.farms, 1, 0); ;

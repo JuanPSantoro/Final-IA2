@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b11d04b9dc0e34eae3bf629cccdd11, type: 3}
-  m_Name: Has Pending Task
+  m_Script: {fileID: 11500000, guid: 64bba45273c1fd74cb6e01aa866e9f4f, type: 3}
+  m_Name: House Builded
   m_EditorClassIdentifier: 
   comparative: 6
-  pendingTask: 1
+  building: 0
+  amount: 1

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Sleep
   m_EditorClassIdentifier: 
   actionName: Sleep
-  cost: 1
+  cost: 100
   target: 9
   preconditions:
   - {fileID: 11400000, guid: 9f91b62cf1bb77c428a9b72979523950, type: 2}
-  - {fileID: 11400000, guid: 42d23fa537d9b3041b6fa3076c0df64f, type: 2}
   effects:
   - {fileID: 11400000, guid: 171397ebb03f33947bd026ef9e3f01ff, type: 2}

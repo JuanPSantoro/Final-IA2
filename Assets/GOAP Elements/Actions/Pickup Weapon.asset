@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pickup Weapon
   m_EditorClassIdentifier: 
   actionName: PickUp Weapon
-  cost: 5
+  cost: 50
   target: 3
   preconditions:
   - {fileID: 11400000, guid: 4cfdb2f3e89760b4fbf014f5c555b2a8, type: 2}

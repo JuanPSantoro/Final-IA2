@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pickup Hammer
   m_EditorClassIdentifier: 
   actionName: PickUp Hammer
-  cost: 5
+  cost: 50
   target: 1
   preconditions:
   - {fileID: 11400000, guid: fa643312a2772c6479d8de8b7fd6370a, type: 2}

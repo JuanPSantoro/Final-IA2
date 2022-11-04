@@ -92,6 +92,7 @@ public class Goap : MonoBehaviour
 
         if (seq == null)
         {
+            Debug.Log("WATCHDOG " + watchdog);
             Debug.Log("Imposible planear");
             return null;
         }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Energy Less 5
   m_EditorClassIdentifier: 
   comparative: 3
-  energyAmount: 5
+  energyAmount: 80

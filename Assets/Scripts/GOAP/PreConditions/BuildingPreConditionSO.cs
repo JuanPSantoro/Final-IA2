@@ -11,16 +11,14 @@ public class BuildingPreConditionSO : PreConditionSO
 
     public override bool ExecutePreCondition(WorldState ws)
     {
-        int builded = 0;
         switch (building)
         {
             case Buildings.FARM:
-                builded = ws.farms;
-                break;
+                return ExectuteNumberComparative(ws.farms, amount);
             case Buildings.HOUSE:
-                builded = ws.houses;
-                break;
+                bool builded = amount > 0;
+                return ExecuteBoolComparative(ws.houses, builded);
         }
-        return ExectuteNumberComparative(builded, amount);
+        return false;
     }
 }
