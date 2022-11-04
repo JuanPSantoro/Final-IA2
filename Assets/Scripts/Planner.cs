@@ -7,14 +7,18 @@ using System;
 public class Planner : MonoBehaviour 
 {
     public List<GoapActionSO> actions;
-    public GoapObjectiveSO goal;
-    public GoapHeuristicSO heuristic;
+    private GoapObjectiveSO _goal;
+    private GoapHeuristicSO _heuristic;
 
-	private void Start ()
+    public GoapObjectiveSO Objective { set { _goal = value; } }
+    public GoapHeuristicSO Heuristic { set { _heuristic = value; } }
+
+    public void StartPlan()
     {
-		StartCoroutine(Plan());
-	}
-	
+        if (_goal != null && _heuristic != null)
+            StartCoroutine(Plan());
+    }
+
     private IEnumerator Plan() {
 		yield return new WaitForSeconds(0.2f);
 
@@ -28,12 +32,12 @@ public class Planner : MonoBehaviour
 
         Func<GoapState, float> h = (curr) =>
         {
-            return heuristic.ProcessHeuristic(curr.worldState);
+            return _heuristic.ProcessHeuristic(curr.worldState);
         };
 
         Func<GoapState, bool> objective = (curr) =>
         {
-            return goal.Satisfies(curr.worldState);
+            return _goal.Satisfies(curr.worldState);
         };
 
 		var plan = Goap.Execute(initial, null, objective, h, actions);
