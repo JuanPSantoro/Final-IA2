@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Build House
   m_EditorClassIdentifier: 
   actionName: Build House
-  cost: 1
+  cost: 10
   target: 5
   preconditions:
   - {fileID: 11400000, guid: fa643312a2772c6479d8de8b7fd6370a, type: 2}

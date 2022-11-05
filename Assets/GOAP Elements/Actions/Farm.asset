@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Farm
   m_EditorClassIdentifier: 
   actionName: Farm
-  cost: 3
+  cost: 4
   target: 4
   preconditions:
   - {fileID: 11400000, guid: eb331f0e241661343a4d322bbc646987, type: 2}

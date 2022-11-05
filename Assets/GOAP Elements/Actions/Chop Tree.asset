@@ -18,7 +18,7 @@ MonoBehaviour:
   preconditions:
   - {fileID: 11400000, guid: 4cfdb2f3e89760b4fbf014f5c555b2a8, type: 2}
   - {fileID: 11400000, guid: 331ea0feb08dd4b48b38deef5aa8c0da, type: 2}
-  - {fileID: 11400000, guid: 6d944c38c86f65f48bfad9b2bd0eb03d, type: 2}
+  - {fileID: 11400000, guid: 08d7d1d627fc48b44bf9ac8ffa105325, type: 2}
   effects:
-  - {fileID: 11400000, guid: cdd1575dd92f841498da634268ed33e7, type: 2}
-  - {fileID: 11400000, guid: 009894dab6cc68d45b89ad3d1fe63db2, type: 2}
+  - {fileID: 11400000, guid: d21a48a8bc919de43ae32ae039a8697b, type: 2}
+  - {fileID: 11400000, guid: 7d3a8d2f8f9e96d4ebf3798c0ccfc460, type: 2}

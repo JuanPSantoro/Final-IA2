@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pickup Scythe
   m_EditorClassIdentifier: 
   actionName: PickUp Scythe
-  cost: 50
+  cost: 20
   target: 0
   preconditions:
   - {fileID: 11400000, guid: eb331f0e241661343a4d322bbc646987, type: 2}
@@ -22,3 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6dc3b2c685ead14784d6b28620567ac, type: 2}
   effects:
   - {fileID: 11400000, guid: 38227d3b25628854a986875eeb4fd29a, type: 2}
+  - {fileID: 11400000, guid: cdd1575dd92f841498da634268ed33e7, type: 2}

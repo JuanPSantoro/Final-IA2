@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Hunt
   m_EditorClassIdentifier: 
   actionName: Hunt
-  cost: 5
+  cost: 6
   target: 8
   preconditions:
-  - {fileID: 11400000, guid: 4cfdb2f3e89760b4fbf014f5c555b2a8, type: 2}
+  - {fileID: 11400000, guid: 1a349d5447852b74896e3799d40854f9, type: 2}
   - {fileID: 11400000, guid: 943d1f942b4240244a0922351bedcac9, type: 2}
   - {fileID: 11400000, guid: 638e7054a147f464ebe4236ea3499590, type: 2}
   effects:
