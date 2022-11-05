@@ -15,10 +15,7 @@ public class GoapState
     public GoapState(GoapAction gen = null)
     {
         generatingAction = gen;
-        worldState = new WorldState()
-        {
-            values = new Dictionary<string, bool>() // Muy importane inicializarlo en este caso
-        };
+        worldState = new WorldState();
     }
 
     public GoapState(GoapState source, GoapAction gen = null)

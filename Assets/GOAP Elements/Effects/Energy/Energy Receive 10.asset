@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f449ed059f2383408531b8dcb7a20ca, type: 3}
-  m_Name: Wood Increment 200
+  m_Script: {fileID: 11500000, guid: 8c8050cd2f4f61f4a8d3218f9799053c, type: 3}
+  m_Name: Energy Receive 10
   m_EditorClassIdentifier: 
   effectType: 0
-  woodAmount: 200
+  energy: 10

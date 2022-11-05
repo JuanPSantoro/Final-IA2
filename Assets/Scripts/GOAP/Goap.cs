@@ -54,7 +54,7 @@ public class Goap : MonoBehaviour
 
     public static IEnumerable<GoapActionSO> Execute(GoapState from, GoapState to, Func<GoapState, bool> satisfies, Func<GoapState, float> h, IEnumerable<GoapActionSO> actions)
     {
-        int watchdog = 2000;
+        int watchdog = 500;
 
         IEnumerable<GoapState> seq = AStarNormal<GoapState>.Run(
             from,
@@ -68,16 +68,22 @@ public class Goap : MonoBehaviour
                 else
                     watchdog--;
 
-                var asd = actions.Where(a => a.preconditions.All(pre => pre.ExecutePreCondition(curr.worldState))).ToList();
+                var validActions = actions.Where(a => a.preconditions.All(pre => pre.ExecutePreCondition(curr.worldState))).ToList();
 
+                if (curr.generator != null)
+                    Debug.Log("COMES FROM: " + curr.generator.actionName);
+
+                DebugWS(curr.worldState);
+
+                /*
                 Debug.Log("---------------------------");
-                foreach (var current in asd)
+                foreach (var current in validActions)
                 {
                     Debug.Log(current.actionName);
                 }
-                Debug.Log("---------------------------");
+                Debug.Log("---------------------------");*/
 
-                return asd.Aggregate(new FList<AStarNormal<GoapState>.Arc>(), (possibleList, action) =>
+                return validActions.Aggregate(new FList<AStarNormal<GoapState>.Arc>(), (possibleList, action) =>
                 {
                     var newState = new GoapState(curr);
                     foreach (EffectSO currentEffect in action.effects)
@@ -105,5 +111,15 @@ public class Goap : MonoBehaviour
         Debug.Log("WATCHDOG " + watchdog);
 
         return seq.Skip(1).Select(x => x.generator);
+    }
+
+    public static void DebugWS(WorldState ws)
+    {
+        Debug.Log("------------- WORLD STATE --------------");
+        Debug.Log("E: " + ws.energy);
+        Debug.Log("F: " + ws.food);
+        Debug.Log("W: " + ws.wood);
+        Debug.Log("Tool: " + ws.tool);
+        Debug.Log("------------- WORLD STATE --------------");
     }
 }

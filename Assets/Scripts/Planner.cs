@@ -37,7 +37,7 @@ public class Planner : MonoBehaviour
 
         Func<GoapState, bool> objective = (curr) =>
         {
-            return _goal.Satisfies(curr.worldState);
+            return _goal.Satisfies(curr.worldState) /*|| (curr.generator != null && curr.generator.actionName == "Sleep")*/;
         };
 
 		var plan = Goap.Execute(initial, null, objective, h, actions);
