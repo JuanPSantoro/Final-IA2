@@ -13,6 +13,14 @@ public class Planner : MonoBehaviour
     public GoapObjectiveSO Objective { set { _goal = value; } }
     public GoapHeuristicSO Heuristic { set { _heuristic = value; } }
 
+    public World world;
+
+    private void Awake()
+    {
+        if (world == null)
+            world = FindObjectOfType<World>();
+    }
+
     public void StartPlan()
     {
         if (_goal != null && _heuristic != null)
@@ -21,14 +29,9 @@ public class Planner : MonoBehaviour
 
     private IEnumerator Plan() {
 		yield return new WaitForSeconds(0.2f);
-
-		var observedState = new WorldState();
 		
         GoapState initial = new GoapState();
-        initial.worldState = new WorldState();
-        observedState.energy = 100;
-
-        initial.worldState = observedState;
+        initial.worldState = world.GetCurrentWorldState();
 
         Func<GoapState, float> h = (curr) =>
         {
@@ -45,6 +48,17 @@ public class Planner : MonoBehaviour
 		if (plan == null)
 			Debug.Log("Couldn't plan");
 		else {
+            var currentWorldState = world.GetCurrentWorldState();
+
+            foreach (var currentAction in plan)
+            {
+                foreach (var currentEffect in currentAction.effects)
+                {
+                    currentWorldState = currentEffect.ExecuteEffect(currentWorldState);
+                    world.SaveWorldState(currentWorldState);
+                }
+            }
+            
 			/*GetComponent<Guy>().ExecutePlan(
 				plan
 				.Select(a => 

@@ -70,10 +70,10 @@ public class Goap : MonoBehaviour
 
                 var validActions = actions.Where(a => a.preconditions.All(pre => pre.ExecutePreCondition(curr.worldState))).ToList();
 
-                if (curr.generator != null)
+                /*if (curr.generator != null)
                     Debug.Log("COMES FROM: " + curr.generator.actionName);
 
-                DebugWS(curr.worldState);
+                DebugWS(curr.worldState);*/
 
                 /*
                 Debug.Log("---------------------------");
