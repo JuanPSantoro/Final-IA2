@@ -22,3 +22,4 @@ MonoBehaviour:
   effects:
   - {fileID: 11400000, guid: d21a48a8bc919de43ae32ae039a8697b, type: 2}
   - {fileID: 11400000, guid: 7d3a8d2f8f9e96d4ebf3798c0ccfc460, type: 2}
+  actionEntity: 6

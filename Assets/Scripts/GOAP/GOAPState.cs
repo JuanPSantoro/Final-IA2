@@ -6,25 +6,21 @@ public class GoapState
     public WorldState worldState;
 
 
-    public GoapAction generatingAction = null;
     public GoapActionSO generator = null;
 
     public int step = 0;
 
     #region CONSTRUCTOR
-    public GoapState(GoapAction gen = null)
+    public GoapState()
     {
-        generatingAction = gen;
         worldState = new WorldState();
     }
 
-    public GoapState(GoapState source, GoapAction gen = null)
+    public GoapState(GoapState source)
     {
         worldState = source.worldState.Clone();
-        generatingAction = gen;
     }
     #endregion
-
 
     public override bool Equals(object obj)
     {
@@ -52,7 +48,6 @@ public class GoapState
     }
 }
 
-
 public struct WorldState
 {
     public float energy;
@@ -61,8 +56,6 @@ public struct WorldState
     public int farms;
     public bool houses;
     public string tool;
-
-    public Dictionary<string, bool> values;
 
     public WorldState Clone()
     {

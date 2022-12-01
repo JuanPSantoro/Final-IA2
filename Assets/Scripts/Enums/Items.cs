@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum Items
+﻿public enum Items
 {
-	SCYTHE,
-	HAMMER,
-	AXE,
-	WEAPON
+    SCYTHE,
+    HAMMER,
+    AXE,
+    WEAPON
 }

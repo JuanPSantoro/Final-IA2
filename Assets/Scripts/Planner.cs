@@ -58,6 +58,8 @@ public class Planner : MonoBehaviour
                     world.SaveWorldState(currentWorldState);
                 }
             }
+
+            FindObjectOfType<PlayerController>().ExecutePlan(plan);
             
 			/*GetComponent<Guy>().ExecutePlan(
 				plan

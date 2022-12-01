@@ -8,11 +8,18 @@ using IA2;
 public enum ActionEntity
 {
 	Kill,
-    PickUp,
 	NextStep,
 	FailedStep,
 	Open,
-	Success
+	Success,
+
+    PickUp,
+    Chop,
+    Hunt,
+    Farm,
+    Build,
+    Sleep,
+    Idle
 }
 
 public class Guy : MonoBehaviour
@@ -132,7 +139,6 @@ public class Guy : MonoBehaviour
 
 	private void Update ()
     {
-		//Never forget
         _fsm.Update();
 	}
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Random = UnityEngine.Random;
-
+using IA2;
 
 public class Entity : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class Entity : MonoBehaviour
 	public event Action<Entity, Transform>	OnHitWall = delegate {};
 	public event Action<Entity, Item>		OnHitItem = delegate {};
 	public event Action<Entity, Waypoint, bool>	OnReachDestination = delegate {};
+    public event Action OnReach = delegate { };
 
 	public List<Item> initialItems;
 	
@@ -77,6 +78,8 @@ public class Entity : MonoBehaviour
 
     #endregion
 
+    private EventFSM<ActionEntity> _fsm;
+
     void Awake()
     {
         _items = new List<Item>();
@@ -92,6 +95,11 @@ public class Entity : MonoBehaviour
 
         foreach (var it in initialItems)
             AddItem(Instantiate(it));
+    }
+
+    public void SetFSM(EventFSM<ActionEntity> fsm)
+    {
+        _fsm = fsm;
     }
 
     #region MOVEMENT & COLLISION
@@ -233,10 +241,24 @@ public class Entity : MonoBehaviour
 		}
 		
 		_vel = Vector3.zero;
-		OnReachDestination(this, reachedDst, reachedDst == dstWp);
+        Debug.Log("REACH DESTINATION");
+        OnReachDestination(this, reachedDst, reachedDst == dstWp);
+        OnReach();
 	}
 
-	void Paint(Color color) {
+    public void Build()
+    {
+        StartCoroutine(OnBuild());
+    }
+
+    private IEnumerator OnBuild()
+    {
+        yield return new WaitForSeconds(5);
+        _fsm.Feed(ActionEntity.NextStep);
+
+    }
+
+    void Paint(Color color) {
 		foreach(Transform xf in body)
 			xf.GetComponent<Renderer>().material.color = color;
 		lblNumber.color = new Color(1f-color.r, 1f-color.g, 1f-color.b);

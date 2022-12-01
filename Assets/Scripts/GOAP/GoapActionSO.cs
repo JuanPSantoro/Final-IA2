@@ -10,4 +10,5 @@ public class GoapActionSO : ScriptableObject
     public Targets target;
     public List<PreConditionSO> preconditions;
     public List<EffectSO> effects;
+    public ActionEntity actionEntity;
 }

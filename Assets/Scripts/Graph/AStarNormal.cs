@@ -104,8 +104,8 @@ public class AStarNormal<Node> where Node : class
                     .TakeWhile(x => x != null)
                     .Reverse()
                     .Select(x => x as GoapState)
-                    .Where(x => x != null && x.generatingAction != null)
-                    .Aggregate("", (a, x) => a + "-->" + x.generatingAction.Name)
+                    .Where(x => x != null && x.generator != null)
+                    .Aggregate("", (a, x) => a + "-->" + x.generator.actionName)
             );
 
             var prevs = state.previous as Dictionary<GoapState, GoapState>;
@@ -118,8 +118,8 @@ public class AStarNormal<Node> where Node : class
                             .TakeWhile(x => x != null)
                             .Reverse()
                             .Select(x => x as GoapState)
-                            .Where(x => x != null && x.generatingAction != null)
-                            .Aggregate("", (a2, x) => a2 + "-->" + x.generatingAction.Name + "(" + x.step + ")")
+                            .Where(x => x != null && x.generator != null)
+                            .Aggregate("", (a2, x) => a2 + "-->" + x.generator.actionName + "(" + x.step + ")")
                         + " (COST: g" + (state.gs)[y as Node] + "   f" + state.fs[y as Node] + ")"
                         + "\n"
                     )

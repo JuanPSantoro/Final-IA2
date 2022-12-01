@@ -19,6 +19,7 @@ public enum ItemType
 public class Item : MonoBehaviour
 {
 	public ItemType type;
+    public ActionEntity actionEntity;
 	public Targets target;
 	private Waypoint _wp;
 	private bool _insideInventory;

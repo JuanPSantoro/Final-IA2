@@ -5,58 +5,11 @@ using System;
 
 public class Goap : MonoBehaviour
 {
-    //El satisfies y la heuristica ahora son Funciones externas
-	public static IEnumerable<GoapAction> Execute(GoapState from, GoapState to, Func<GoapState, bool> satisfies, Func<GoapState, float> h, IEnumerable<GoapAction> actions)
-    {
-        int watchdog = 200;
-
-        IEnumerable<GoapState> seq = AStarNormal<GoapState>.Run(
-            from,
-            to,
-            (curr,goal)  => h (curr),
-            satisfies,
-            curr =>
-            {
-                if (watchdog == 0)
-                    return Enumerable.Empty<AStarNormal<GoapState>.Arc>();
-                else
-                    watchdog--;
-
-                //en este Where se evaluan las precondiciones, al ser un diccionario de <string,bool> solo se chequea que todas las variables concuerdes
-                //En caso de ser un Func<...,bool> se utilizaria ese func de cada estado para saber si cumple o no
-                return actions.Where(action => action.preconditions.All(kv => kv.In(curr.worldState.values)))
-                              .Where(a => a.Preconditions(curr)) // Agregue esto para chequear las precondiuciones puestas  en el Func, Al final deberia quedar solo esta
-                              .Aggregate(new FList<AStarNormal<GoapState>.Arc>(), (possibleList, action) =>
-                              {
-                                  var newState = new GoapState(curr);
-                                  newState = action.Effects(newState); // se aplican lso effectos del Func
-                                  newState.generatingAction = action;
-                                  newState.step = curr.step+1;
-                                  return possibleList + new AStarNormal<GoapState>.Arc(newState, action.Cost);
-                              });
-            });
-
-        if (seq == null)
-        {
-            Debug.Log("Imposible planear");
-            return null;
-        }
-
-        foreach (var act in seq.Skip(1))
-        {
-			Debug.Log(act);
-        }
-
-		Debug.Log("WATCHDOG " + watchdog);
-		
-		return seq.Skip(1).Select(x => x.generatingAction);
-	}
-
     public static IEnumerable<GoapActionSO> Execute(GoapState from, GoapState to, Func<GoapState, bool> satisfies, Func<GoapState, float> h, IEnumerable<GoapActionSO> actions)
     {
         int watchdog = 500;
 
-        IEnumerable<GoapState> seq = AStarNormal<GoapState>.Run(
+        IEnumerable<GoapState> seq = AStarNormal<GoapState>.Run (
             from,
             to,
             (curr, goal) => h(curr),
@@ -70,31 +23,24 @@ public class Goap : MonoBehaviour
 
                 var validActions = actions.Where(a => a.preconditions.All(pre => pre.ExecutePreCondition(curr.worldState))).ToList();
 
-                /*if (curr.generator != null)
-                    Debug.Log("COMES FROM: " + curr.generator.actionName);
+                //DebugState(curr);
+                //DebugWS(curr.worldState);
+                //DebugValidActions(validActions);
 
-                DebugWS(curr.worldState);*/
-
-                /*
-                Debug.Log("---------------------------");
-                foreach (var current in validActions)
-                {
-                    Debug.Log(current.actionName);
-                }
-                Debug.Log("---------------------------");*/
-
-                return validActions.Aggregate(new FList<AStarNormal<GoapState>.Arc>(), (possibleList, action) =>
-                {
-                    var newState = new GoapState(curr);
-                    foreach (EffectSO currentEffect in action.effects)
+                return validActions.Aggregate(FList.Create<AStarNormal<GoapState>.Arc>(), (possibleList, action) =>
                     {
-                        newState.worldState = currentEffect.ExecuteEffect(newState.worldState);
+                        var newState = new GoapState(curr);
+                        foreach (EffectSO currentEffect in action.effects)
+                        {
+                            newState.worldState = currentEffect.ExecuteEffect(newState.worldState);
+                        }
+                        newState.generator = action;
+                        newState.step = curr.step + 1;
+                        return possibleList + new AStarNormal<GoapState>.Arc(newState, action.cost);
                     }
-                    newState.generator = action;
-                    newState.step = curr.step + 1;
-                    return possibleList + new AStarNormal<GoapState>.Arc(newState, action.cost);
-                }); ;
-            });
+                );
+            }
+        );
 
         if (seq == null)
         {
@@ -111,6 +57,22 @@ public class Goap : MonoBehaviour
         Debug.Log("WATCHDOG " + watchdog);
 
         return seq.Skip(1).Select(x => x.generator);
+    }
+
+    public static void DebugState(GoapState state)
+    {
+        if (state.generator != null)
+            Debug.Log("COMES FROM: " + state.generator.actionName);
+    }
+
+    public static void DebugValidActions(IEnumerable<GoapActionSO> actions)
+    {
+        Debug.Log("---------------------------");
+        foreach (var current in actions)
+        {
+            Debug.Log(current.actionName);
+        }
+        Debug.Log("---------------------------");
     }
 
     public static void DebugWS(WorldState ws)

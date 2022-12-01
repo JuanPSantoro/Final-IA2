@@ -54,12 +54,13 @@ public class FList<T> : IEnumerable<T> {
 }
 
 public static class FList {
-	public static FList<T> ToFList<T>(this IEnumerable<T> lhs) {
-		return Cast(lhs);
+
+    public static FList<T> Create<T>() {
+		return new FList<T>();
 	}
 
-	public static FList<T> Create<T>() {
-		return new FList<T>();
+	public static FList<T> ToFList<T>(this IEnumerable<T> lhs) {
+		return Cast(lhs);
 	}
 
 	public static FList<T> Create<T>(T singleValue) {

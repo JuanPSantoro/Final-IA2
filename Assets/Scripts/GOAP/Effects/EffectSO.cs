@@ -26,7 +26,6 @@ public abstract class EffectSO : ScriptableObject
                 break;
         }
         return variableToChange;
-        Debug.LogError("UNEXPECTED EFFECT FOR FLOATS");
     }
 
     protected int ExecuteInNumber(int variableToChange, int value, int minAmount = -1, int maxAmount = -1)
@@ -48,7 +47,6 @@ public abstract class EffectSO : ScriptableObject
                 break;
         }
         return variableToChange;
-        Debug.LogError("UNEXPECTED EFFECT FOR INTS");
     }
 
     protected bool ExecuteInBool(bool variableToChange, bool value)
