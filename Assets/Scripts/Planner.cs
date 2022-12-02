@@ -60,23 +60,6 @@ public class Planner : MonoBehaviour
             }
 
             FindObjectOfType<PlayerController>().ExecutePlan(plan);
-            
-			/*GetComponent<Guy>().ExecutePlan(
-				plan
-				.Select(a => 
-                {
-                    Item i2 = everything.FirstOrDefault(i => i.target == a.target);
-                    if (actDict.ContainsKey(a.actionName) && i2 != null)
-                    {
-                        return Tuple.Create(actDict[a.actionName], i2);
-                    }
-                    else
-                    {
-                        return null;
-                    }
-				}).Where(a => a != null)
-				.ToList()
-			);*/
 		}
 	}
 }

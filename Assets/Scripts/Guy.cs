@@ -5,23 +5,6 @@ using System.Linq;
 using System;
 using IA2;
 
-public enum ActionEntity
-{
-	Kill,
-	NextStep,
-	FailedStep,
-	Open,
-	Success,
-
-    PickUp,
-    Chop,
-    Hunt,
-    Farm,
-    Build,
-    Sleep,
-    Idle
-}
-
 public class Guy : MonoBehaviour
 {
 	private EventFSM<ActionEntity> _fsm;

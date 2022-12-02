@@ -174,3 +174,20 @@ public class PlayerController : MonoBehaviour
         _fsm.Update();
     }
 }
+
+public enum ActionEntity
+{
+    Kill,
+    NextStep,
+    FailedStep,
+    Open,
+    Success,
+
+    PickUp,
+    Chop,
+    Hunt,
+    Farm,
+    Build,
+    Sleep,
+    Idle
+}

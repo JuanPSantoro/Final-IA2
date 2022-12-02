@@ -11,7 +11,6 @@ public class Waypoint : MonoBehaviour
 
 	void Start ()
     {
-		//Make bidirectional
 		foreach(var wp in adyacent) {
 			if(wp != null && wp.adyacent != null) {
 				if(!wp.adyacent.Contains(this))
@@ -23,7 +22,6 @@ public class Waypoint : MonoBehaviour
 	
 	void Update ()
     {
-		//For debugging: Pause then inactivate
 		nearbyItems.RemoveWhere(it => !it.isActiveAndEnabled);
 	}
 	

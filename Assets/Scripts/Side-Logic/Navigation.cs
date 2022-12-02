@@ -21,7 +21,7 @@ public class Navigation : MonoBehaviour
 		}
 	}
 
-	public bool Reachable(Vector3 from, Vector3 to, List<Tuple<Vector3, Vector3>> debugRayList)
+	public bool Reachable(Vector3 from, Vector3 to)
     {
 		var srcWp = NearestTo(from);
 		var dstWp = NearestTo(to);
@@ -45,23 +45,11 @@ public class Navigation : MonoBehaviour
 			wp = path.Last();
 		}
 		Debug.Log("Reachable from " + wp.name);
-		if(debugRayList != null) debugRayList.Add(Tuple.Create(wp.transform.position, to));
 
 		var delta = (to - wp.transform.position);
 		var distance = delta.magnitude;
 
 		return !Physics.Raycast(wp.transform.position, delta/distance, distance, LayerMask.GetMask(new []{"Blocking"}));
-	}
-
-	public IEnumerable<Item> AllInventories() {
-		return AllItems()
-			.Select(x => x.GetComponent<Entity>())
-			.Where(x => x != null)
-			.Aggregate(FList.Create<Item>(), (a, x) => a + x.items);
-	}
-
-	public IEnumerable<Item> AllItems() {
-		return All().Aggregate(FList.Create<Item>(), (a, wp) => a += wp.nearbyItems);
 	}
 
 	public IEnumerable<Waypoint> All() {
