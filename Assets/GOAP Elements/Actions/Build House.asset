@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 412881305c6a2304d82de5b4e652768b, type: 2}
   - {fileID: 11400000, guid: 156b6d50582357d46be57fe2bbe7ee12, type: 2}
   actionEntity: 9
+  destination: 4

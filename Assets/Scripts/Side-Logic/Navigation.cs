@@ -8,7 +8,7 @@ public class Navigation : MonoBehaviour
 {
     public static Navigation instance;
     private List<Waypoint> _waypoints = new List<Waypoint>();
-
+    private List<Item> _allItems = new List<Item>();
 	void Start ()
     {
 		instance = this;
@@ -19,6 +19,8 @@ public class Navigation : MonoBehaviour
 			if(wp != null)
 				_waypoints.Add(wp);
 		}
+
+        _allItems = FindObjectsOfType<Item>().ToList();
 	}
 
 	public bool Reachable(Vector3 from, Vector3 to)
@@ -69,4 +71,16 @@ public class Navigation : MonoBehaviour
 			})
 			.First();
 	}
+
+    private IEnumerable<Item> GetItemsOfType(Destination destination)
+    {
+        return _allItems.Where(item => item.destination == destination).ToList();
+    }
+
+    public Item GetNearestItem(Vector3 from, Destination destination)
+    {
+        var filteredItems = GetItemsOfType(destination);
+        var item = filteredItems.OrderBy(x => Vector3.SqrMagnitude(x.transform.position - from)).FirstOrDefault();
+        return item;
+    }
 }

@@ -55,7 +55,8 @@ public class PlayerController : MonoBehaviour
         chopState.OnEnter += a =>
         {
             Debug.Log("Enter Chop");
-            entity.GoTo(_tree.transform.position);
+            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.TREE);
+            entity.GoTo(destination.transform.position);
             entity.OnReach += inventory.ChopWood;
         };
 
@@ -67,7 +68,8 @@ public class PlayerController : MonoBehaviour
         huntState.OnEnter += a =>
         {
             Debug.Log("Enter Hunt");
-            entity.GoTo(_animal.transform.position);
+            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.PIG);
+            entity.GoTo(destination.transform.position);
             entity.OnReach += inventory.Hunt;
         };
 
@@ -79,6 +81,7 @@ public class PlayerController : MonoBehaviour
         farmState.OnEnter += a =>
         {
             Debug.Log("Enter Farm");
+            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.FARM);
             entity.GoTo(_farm.transform.position);
             entity.OnReach += inventory.Farm;
         };
@@ -91,7 +94,8 @@ public class PlayerController : MonoBehaviour
         pickupState.OnEnter += a =>
         {
             Debug.Log("Enter Pickup ");
-            entity.GoTo(_deposit.transform.position);
+            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.DEPOSIT);
+            entity.GoTo(destination.transform.position);
             entity.OnReach += inventory.PickUp;
         };
 
@@ -104,8 +108,8 @@ public class PlayerController : MonoBehaviour
         sleepState.OnEnter += a =>
         {
             Debug.Log("Enter Sleep");
-
-            entity.GoTo(_masterHouse.transform.position);
+            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.HOUSE);
+            entity.GoTo(destination.transform.position);
             entity.OnReach += stamina.Sleep;
         };
 
