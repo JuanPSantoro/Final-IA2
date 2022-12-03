@@ -61,11 +61,11 @@ public class Item : MonoBehaviour
 
 	private void Update ()
     {
-		if(!_insideInventory)
+		/*if(!_insideInventory)
         {
 			_wp.nearbyItems.Remove(this);
 			_wp = Navigation.instance.NearestTo(transform.position);
 			_wp.nearbyItems.Add(this);
-		}
+		}*/
 	}
 }

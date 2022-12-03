@@ -214,22 +214,16 @@ public class Entity : MonoBehaviour
 				, (wa, wb) => Vector3.Distance(wa.transform.position, wb.transform.position)
 				, w => w == dstWp
 				, w =>
-					//w.nearbyItems.Any(it => it.type == ItemType.Door)
-					//? null
-					//:
 					w.adyacent
-					//.Where(a => a.nearbyItems.All(it => it.type != ItemType.Door))
 					.Select(a => new AStarNormal<Waypoint>.Arc(a, Vector3.Distance(a.transform.position, w.transform.position)))
 			);
-			if(path != null) {
-				foreach(var next in path.Select(w => FloorPos(w))) {
-
-					while((next - FloorPos(this)).sqrMagnitude >= 0.05f) {
-						_vel = (next - FloorPos(this)).normalized;
+			if (path != null) {
+                var floorPosList = path.Select(w => w.transform.position).ToList();
+				foreach(var next in floorPosList) {
+                    while((next - transform.position).sqrMagnitude >= 0.05f) {
+						_vel = (next - transform.position).normalized;
 						yield return null;
 					}
-					//_vel = (next - FloorPos(this)).normalized;
-					//yield return new WaitUntil(() => (next - FloorPos(this)).sqrMagnitude < 0.05f);
 				}
 			}
 			reachedDst = path.Last();
@@ -241,7 +235,6 @@ public class Entity : MonoBehaviour
 		}
 		
 		_vel = Vector3.zero;
-        Debug.Log("REACH DESTINATION");
         OnReachDestination(this, reachedDst, reachedDst == dstWp);
         OnReach();
 	}

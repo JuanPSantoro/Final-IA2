@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using UnityEditor;
 
 public class Waypoint : MonoBehaviour
 {
-	public List<Waypoint> adyacent;
+	public List<Waypoint> adyacent = new List<Waypoint>();
 	public HashSet<Item> nearbyItems = new HashSet<Item>();
 
 	void Start ()
@@ -34,5 +35,24 @@ public class Waypoint : MonoBehaviour
         {
             Gizmos.DrawLine(transform.position, wp.transform.position);
 		}
+	}
+
+	[ExecuteInEditMode]
+	public void CreateAndLink()
+    {
+		var newWaypoint = Instantiate(this, transform.position, Quaternion.identity);
+		newWaypoint.name = "Waypoint";
+		newWaypoint.transform.parent = transform.parent;
+		newWaypoint.adyacent = new List<Waypoint>();
+		newWaypoint.LinkWaypoint(this);
+		Selection.SetActiveObjectWithContext(newWaypoint, newWaypoint);
+
+	}
+
+	[ExecuteInEditMode]
+	public void LinkWaypoint(Waypoint newWaypoint)
+	{
+		if (!adyacent.Contains(newWaypoint))
+			adyacent.Add(newWaypoint);
 	}
 }

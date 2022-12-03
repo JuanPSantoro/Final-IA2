@@ -8,13 +8,6 @@ public class PlayerController : MonoBehaviour
     private EventFSM<ActionEntity> _fsm;
     private PlayerModel _model;
 
-    public Item _tree;
-    public Item _farm;
-    public Item _deposit;
-    public Item _masterHouse;
-    public Item _house;
-    public Item _animal;
-
     private Inventory inventory;
     private Stamina stamina;
     private IEnumerable<GoapActionSO> _plan;
@@ -48,13 +41,18 @@ public class PlayerController : MonoBehaviour
 
         idleState.OnEnter += a =>
         {
-            Debug.Log("Enter Idle");
-            stamina.Rest();
+            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.IDLE_SPOT);
+            entity.GoTo(destination.transform.position);
+            entity.OnReach += stamina.Rest;
+        };
+
+        idleState.OnExit += a =>
+        {
+            entity.OnReach -= stamina.Rest;
         };
 
         chopState.OnEnter += a =>
         {
-            Debug.Log("Enter Chop");
             var destination = Navigation.instance.GetNearestItem(transform.position, Destination.TREE);
             entity.GoTo(destination.transform.position);
             entity.OnReach += inventory.ChopWood;
@@ -67,7 +65,6 @@ public class PlayerController : MonoBehaviour
 
         huntState.OnEnter += a =>
         {
-            Debug.Log("Enter Hunt");
             var destination = Navigation.instance.GetNearestItem(transform.position, Destination.PIG);
             entity.GoTo(destination.transform.position);
             entity.OnReach += inventory.Hunt;
@@ -80,9 +77,8 @@ public class PlayerController : MonoBehaviour
 
         farmState.OnEnter += a =>
         {
-            Debug.Log("Enter Farm");
             var destination = Navigation.instance.GetNearestItem(transform.position, Destination.FARM);
-            entity.GoTo(_farm.transform.position);
+            entity.GoTo(destination.transform.position);
             entity.OnReach += inventory.Farm;
         };
 
@@ -93,7 +89,6 @@ public class PlayerController : MonoBehaviour
 
         pickupState.OnEnter += a =>
         {
-            Debug.Log("Enter Pickup ");
             var destination = Navigation.instance.GetNearestItem(transform.position, Destination.DEPOSIT);
             entity.GoTo(destination.transform.position);
             entity.OnReach += inventory.PickUp;
@@ -107,7 +102,6 @@ public class PlayerController : MonoBehaviour
 
         sleepState.OnEnter += a =>
         {
-            Debug.Log("Enter Sleep");
             var destination = Navigation.instance.GetNearestItem(transform.position, Destination.HOUSE);
             entity.GoTo(destination.transform.position);
             entity.OnReach += stamina.Sleep;
@@ -121,30 +115,28 @@ public class PlayerController : MonoBehaviour
         nextStepState.OnEnter += a => {
             var step = _plan.FirstOrDefault();
 
-            Debug.Log("Enter Next");
-
             if (step != null)
             {
 
                 _plan = _plan.Skip(1);
                 var oldTarget = _target;
-                _target = _tree;
+                _target = Navigation.instance.GetNearestItem(transform.position, step.destination);
                 if (!_fsm.Feed(step.actionEntity))
                     _target = oldTarget;
             }
             else
             {
-                Debug.Log("No More Actions");
-
-                _fsm.Feed(ActionEntity.Success);
+                var destination = Navigation.instance.GetNearestItem(transform.position, Destination.IDLE_SPOT);
+                entity.GoTo(destination.transform.position);
+                entity.OnReach += Finish;
             }
         };
 
         buildState.OnEnter += a =>
         {
             Debug.Log("Enter Build");
-
-            entity.GoTo(_farm.transform.position);
+            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.UNBUILDED_FARM);
+            entity.GoTo(destination.transform.position);
             entity.OnReach += entity.Build;
         };
 
@@ -176,6 +168,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _fsm.Update();
+    }
+
+    void Finish()
+    {
+        entity.OnReach -= Finish;
+        Debug.Log("No More Actions");
+        _fsm.Feed(ActionEntity.Success);
     }
 }
 

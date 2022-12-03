@@ -42,9 +42,10 @@ public class Goap : MonoBehaviour
             }
         );
 
+        Debug.Log("WATCHDOG " + watchdog);
+
         if (seq == null)
         {
-            Debug.Log("WATCHDOG " + watchdog);
             Debug.Log("Imposible planear");
             return null;
         }
@@ -53,8 +54,6 @@ public class Goap : MonoBehaviour
         {
             Debug.Log(act);
         }
-
-        Debug.Log("WATCHDOG " + watchdog);
 
         return seq.Skip(1).Select(x => x.generator);
     }
