@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         stamina = GetComponent<Stamina>();
         entity = GetComponent<Entity>();
         EventManager.instance.AddEventListener(EventType.FSM_NEXT_STEP, OnNextStep);
-        EventManager.instance.AddEventListener(EventType.FSM_NEXT_STEP, OnFailStep);
+        EventManager.instance.AddEventListener(EventType.FSM_FAIL_STEP, OnFailStep);
         CreateFSM();
     }
 
