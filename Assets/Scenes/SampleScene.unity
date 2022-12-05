@@ -5893,7 +5893,7 @@ PrefabInstance:
     - target: {fileID: 255885961157186118, guid: 9db5002f2f1195943a6dc21cdec8661f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1476613985337129422, guid: 9db5002f2f1195943a6dc21cdec8661f,
         type: 3}
@@ -5959,6 +5959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318416780346980699, guid: 9db5002f2f1195943a6dc21cdec8661f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9db5002f2f1195943a6dc21cdec8661f, type: 3}
@@ -6433,6 +6438,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farm (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8655277730965431825, guid: 85c128dbb8eb1f248908c00a4e46ddc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c128dbb8eb1f248908c00a4e46ddc6, type: 3}
 --- !u!4 &374232371 stripped
@@ -6560,6 +6570,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1503584539}
   m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &437937346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437937348}
+  - component: {fileID: 437937347}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &437937347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437937346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af83030d9220f0147b9fc30aa8b55b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &437937348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437937346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &471884090
 GameObject:
@@ -7802,7 +7855,7 @@ PrefabInstance:
     - target: {fileID: 255885961157186118, guid: 9db5002f2f1195943a6dc21cdec8661f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1476613985337129422, guid: 9db5002f2f1195943a6dc21cdec8661f,
         type: 3}
@@ -7868,6 +7921,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318416780346980699, guid: 9db5002f2f1195943a6dc21cdec8661f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9db5002f2f1195943a6dc21cdec8661f, type: 3}
@@ -8117,6 +8175,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farm (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655277730965431825, guid: 85c128dbb8eb1f248908c00a4e46ddc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c128dbb8eb1f248908c00a4e46ddc6, type: 3}
@@ -23062,6 +23125,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farm (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8655277730965431825, guid: 85c128dbb8eb1f248908c00a4e46ddc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c128dbb8eb1f248908c00a4e46ddc6, type: 3}
 --- !u!4 &1061056450 stripped
@@ -30860,7 +30928,7 @@ PrefabInstance:
     - target: {fileID: 255885961157186118, guid: 9db5002f2f1195943a6dc21cdec8661f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1476613985337129422, guid: 9db5002f2f1195943a6dc21cdec8661f,
         type: 3}
@@ -30926,6 +30994,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318416780346980699, guid: 9db5002f2f1195943a6dc21cdec8661f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9db5002f2f1195943a6dc21cdec8661f, type: 3}
@@ -31201,6 +31274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farm
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655277730965431825, guid: 85c128dbb8eb1f248908c00a4e46ddc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c128dbb8eb1f248908c00a4e46ddc6, type: 3}

@@ -11,4 +11,5 @@ public class GoapActionSO : ScriptableObject
     public List<EffectSO> effects;
     public ActionEntity actionEntity;
     public Destination destination;
+    public Target target;
 }

@@ -11,7 +11,10 @@ public class Navigation : MonoBehaviour
     private List<Item> _allItems = new List<Item>();
 	void Start ()
     {
-		instance = this;
+        if (instance != null)
+            Destroy(gameObject);
+
+        instance = this;
 
 		foreach(Transform xf in transform)
         {

@@ -18,13 +18,6 @@ public class Stamina : MonoBehaviour
 
     public float CurrentEnergy { get { return _currentEnergy; } }
 
-    private EventFSM<ActionEntity> _fsm;
-
-    public void SetFSM(EventFSM<ActionEntity> fsm)
-    {
-        _fsm = fsm;
-    }
-
     public void Rest()
     {
         StartCoroutine(DoRest());
@@ -47,8 +40,7 @@ public class Stamina : MonoBehaviour
         yield return new WaitForSeconds(2); //Replace with animation values
         _currentEnergy = _maxEnergy;
         _onEnergyUpdate?.Invoke(_currentEnergy);
-        _fsm.Feed(ActionEntity.NextStep);
-
+        EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
     private IEnumerator DoRest()
@@ -56,7 +48,6 @@ public class Stamina : MonoBehaviour
         yield return new WaitForSeconds(3); //Replace with Idle Value
         _currentEnergy += _energyToRecoverPerRest;
         _onEnergyUpdate?.Invoke(_currentEnergy);
-        _fsm.Feed(ActionEntity.NextStep);
-
+        EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 }

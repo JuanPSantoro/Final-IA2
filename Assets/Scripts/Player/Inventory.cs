@@ -10,19 +10,14 @@ public class Inventory : MonoBehaviour
     public int food;
     public string tool;
 
+    private string toolToReach;
+
     [SerializeField]
     private UnityEvent<int> _onWoodUpdate;
     [SerializeField]
     private UnityEvent<int> _onFoodUpdate;
     [SerializeField]
     private UnityEvent<string> _onToolChange;
-
-    private EventFSM<ActionEntity> _fsm;
-
-    public void SetFSM(EventFSM<ActionEntity> fsm)
-    {
-        _fsm = fsm;
-    }
 
     public void ChopWood()
     {
@@ -34,7 +29,7 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1);
         wood += 30;
         _onWoodUpdate?.Invoke(wood);
-        _fsm.Feed(ActionEntity.NextStep);
+        EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
     public void Hunt()
@@ -47,8 +42,7 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1);
         food += 30;
         _onFoodUpdate?.Invoke(food);
-        _fsm.Feed(ActionEntity.NextStep);
-
+        EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
     public void Farm()
@@ -61,26 +55,24 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1);
         food += 50;
         _onFoodUpdate?.Invoke(food);
-        _fsm.Feed(ActionEntity.NextStep);
-
+        EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
     public void PickUp()
     {
-        StartCoroutine(OnPickup(Items.AXE));
+        StartCoroutine(OnPickup());
     }
 
-    public void PickUp(Items tool)
-    {
-        StartCoroutine(OnPickup(tool));
-    }
-
-    private IEnumerator OnPickup(Items newTool)
+    private IEnumerator OnPickup()
     {
         yield return new WaitForSeconds(1);
-        tool = newTool.ToString();
-        _onToolChange?.Invoke(tool);
-        _fsm.Feed(ActionEntity.NextStep);
+        Debug.Log("PICKUP " + toolToReach);
+        _onToolChange?.Invoke(toolToReach);
+        EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
+    }
 
+    public void TargetTool(string tool)
+    {
+        toolToReach = tool;
     }
 }

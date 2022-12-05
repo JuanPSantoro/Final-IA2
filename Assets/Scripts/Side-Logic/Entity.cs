@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using Random = UnityEngine.Random;
 using IA2;
 
 public class Entity : MonoBehaviour
@@ -78,8 +77,6 @@ public class Entity : MonoBehaviour
 
     #endregion
 
-    private EventFSM<ActionEntity> _fsm;
-
     void Awake()
     {
         _items = new List<Item>();
@@ -95,11 +92,6 @@ public class Entity : MonoBehaviour
 
         foreach (var it in initialItems)
             AddItem(Instantiate(it));
-    }
-
-    public void SetFSM(EventFSM<ActionEntity> fsm)
-    {
-        _fsm = fsm;
     }
 
     #region MOVEMENT & COLLISION
@@ -247,8 +239,7 @@ public class Entity : MonoBehaviour
     private IEnumerator OnBuild()
     {
         yield return new WaitForSeconds(5);
-        _fsm.Feed(ActionEntity.NextStep);
-
+        EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
     void Paint(Color color) {

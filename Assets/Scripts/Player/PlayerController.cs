@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Inventory inventory;
     private Stamina stamina;
     private IEnumerable<GoapActionSO> _plan;
+    private GoapActionSO _currentStep;
     private Entity entity;
     private Item _target;
 
@@ -19,10 +20,19 @@ public class PlayerController : MonoBehaviour
         inventory = GetComponent<Inventory>();
         stamina = GetComponent<Stamina>();
         entity = GetComponent<Entity>();
+        EventManager.instance.AddEventListener(EventType.FSM_NEXT_STEP, OnNextStep);
+        EventManager.instance.AddEventListener(EventType.FSM_NEXT_STEP, OnFailStep);
         CreateFSM();
-        stamina.SetFSM(_fsm);
-        inventory.SetFSM(_fsm);
-        entity.SetFSM(_fsm);
+    }
+
+    public void OnNextStep(params object[] parameter)
+    {
+        _fsm.Feed(ActionEntity.NextStep);
+    }
+
+    public void OnFailStep(params object[] parameter)
+    {
+        _fsm.Feed(ActionEntity.FailedStep);
     }
 
     public void CreateFSM()
@@ -41,8 +51,7 @@ public class PlayerController : MonoBehaviour
 
         idleState.OnEnter += a =>
         {
-            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.IDLE_SPOT);
-            entity.GoTo(destination.transform.position);
+            entity.GoTo(_target.transform.position);
             entity.OnReach += stamina.Rest;
         };
 
@@ -53,8 +62,7 @@ public class PlayerController : MonoBehaviour
 
         chopState.OnEnter += a =>
         {
-            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.TREE);
-            entity.GoTo(destination.transform.position);
+            entity.GoTo(_target.transform.position);
             entity.OnReach += inventory.ChopWood;
         };
 
@@ -65,8 +73,7 @@ public class PlayerController : MonoBehaviour
 
         huntState.OnEnter += a =>
         {
-            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.PIG);
-            entity.GoTo(destination.transform.position);
+            entity.GoTo(_target.transform.position);
             entity.OnReach += inventory.Hunt;
         };
 
@@ -77,8 +84,7 @@ public class PlayerController : MonoBehaviour
 
         farmState.OnEnter += a =>
         {
-            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.FARM);
-            entity.GoTo(destination.transform.position);
+            entity.GoTo(_target.transform.position);
             entity.OnReach += inventory.Farm;
         };
 
@@ -89,8 +95,8 @@ public class PlayerController : MonoBehaviour
 
         pickupState.OnEnter += a =>
         {
-            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.DEPOSIT);
-            entity.GoTo(destination.transform.position);
+            entity.GoTo(_target.transform.position);
+            inventory.TargetTool(_currentStep.target.ToString());
             entity.OnReach += inventory.PickUp;
         };
 
@@ -99,11 +105,9 @@ public class PlayerController : MonoBehaviour
             entity.OnReach -= inventory.PickUp;
         };
 
-
         sleepState.OnEnter += a =>
         {
-            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.HOUSE);
-            entity.GoTo(destination.transform.position);
+            entity.GoTo(_target.transform.position);
             entity.OnReach += stamina.Sleep;
         };
 
@@ -121,8 +125,12 @@ public class PlayerController : MonoBehaviour
                 _plan = _plan.Skip(1);
                 var oldTarget = _target;
                 _target = Navigation.instance.GetNearestItem(transform.position, step.destination);
+                _currentStep = step;
                 if (!_fsm.Feed(step.actionEntity))
-                    _target = oldTarget;
+                {
+                    Debug.Log("Couldn't transition to: " + step.actionEntity);
+                    _fsm.Feed(ActionEntity.FailedStep);
+                }
             }
             else
             {
@@ -135,9 +143,19 @@ public class PlayerController : MonoBehaviour
         buildState.OnEnter += a =>
         {
             Debug.Log("Enter Build");
-            var destination = Navigation.instance.GetNearestItem(transform.position, Destination.UNBUILDED_FARM);
-            entity.GoTo(destination.transform.position);
+            entity.GoTo(_target.transform.position);
+            if (_currentStep.destination == Destination.UNBUILDED_FARM)
+                _target.destination = Destination.FARM;
+            else if (_currentStep.destination == Destination.UNBUILDED_HOUSE)
+                _target.destination = Destination.HOUSE;
             entity.OnReach += entity.Build;
+        };
+
+        buildState.OnExit += a =>
+        {
+            Debug.Log("FINISH BUILDING " + _target);
+            _target.transform.Find("Model").gameObject.SetActive(true);
+            entity.OnReach -= entity.Build;
         };
 
         StateConfigurer.Create(anyState)

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: Hunt
   cost: 6
-  target: 8
   preconditions:
   - {fileID: 11400000, guid: 1a349d5447852b74896e3799d40854f9, type: 2}
   - {fileID: 11400000, guid: d3dd21d5298d9cd4e818f8dcd1dc3bce, type: 2}
@@ -23,3 +22,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df3e06ec14b81c242a3a6dcc851305e7, type: 2}
   - {fileID: 11400000, guid: bb651a46422357f458403be950fc8b73, type: 2}
   actionEntity: 7
+  destination: 0
+  target: 7
