@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 29330520}
   - component: {fileID: 29330522}
   - component: {fileID: 29330521}
+  - component: {fileID: 29330523}
   m_Layer: 0
   m_Name: FarmParticles
   m_TagString: Untagged
@@ -429,14 +430,14 @@ ParticleSystem:
   m_GameObject: {fileID: 29330519}
   serializedVersion: 6
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -5078,6 +5079,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &29330523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29330519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8617e69358a3b24eb5cb8c6825aa3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventToPlayParticles: 11
+  _eventToStopParticles: 12
 --- !u!1 &30794861
 GameObject:
   m_ObjectHideFlags: 0
@@ -10876,6 +10891,7 @@ GameObject:
   - component: {fileID: 962511573}
   - component: {fileID: 962511575}
   - component: {fileID: 962511574}
+  - component: {fileID: 962511576}
   m_Layer: 0
   m_Name: HuntParticles
   m_TagString: Untagged
@@ -10970,14 +10986,14 @@ ParticleSystem:
   m_GameObject: {fileID: 962511572}
   serializedVersion: 6
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -15619,6 +15635,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &962511576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962511572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8617e69358a3b24eb5cb8c6825aa3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventToPlayParticles: 13
+  _eventToStopParticles: 14
 --- !u!1001 &964854122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15699,6 +15729,7 @@ GameObject:
   - component: {fileID: 977169653}
   - component: {fileID: 977169655}
   - component: {fileID: 977169654}
+  - component: {fileID: 977169656}
   m_Layer: 0
   m_Name: SleepParticles
   m_TagString: Untagged
@@ -15793,14 +15824,14 @@ ParticleSystem:
   m_GameObject: {fileID: 977169652}
   serializedVersion: 6
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -20442,6 +20473,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &977169656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977169652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8617e69358a3b24eb5cb8c6825aa3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventToPlayParticles: 9
+  _eventToStopParticles: 10
 --- !u!1 &989298832
 GameObject:
   m_ObjectHideFlags: 0
@@ -20778,6 +20823,7 @@ GameObject:
   - component: {fileID: 1055843140}
   - component: {fileID: 1055843142}
   - component: {fileID: 1055843141}
+  - component: {fileID: 1055843143}
   m_Layer: 0
   m_Name: BuildParticles
   m_TagString: Untagged
@@ -20872,14 +20918,14 @@ ParticleSystem:
   m_GameObject: {fileID: 1055843139}
   serializedVersion: 6
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -25521,6 +25567,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1055843143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055843139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8617e69358a3b24eb5cb8c6825aa3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventToPlayParticles: 17
+  _eventToStopParticles: 18
 --- !u!1001 &1061056449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25852,6 +25912,7 @@ GameObject:
   - component: {fileID: 1080881971}
   - component: {fileID: 1080881973}
   - component: {fileID: 1080881972}
+  - component: {fileID: 1080881974}
   m_Layer: 0
   m_Name: WoodParticles
   m_TagString: Untagged
@@ -25946,14 +26007,14 @@ ParticleSystem:
   m_GameObject: {fileID: 1080881970}
   serializedVersion: 6
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -30595,6 +30656,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1080881974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080881970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8617e69358a3b24eb5cb8c6825aa3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventToPlayParticles: 15
+  _eventToStopParticles: 16
 --- !u!1 &1089085148
 GameObject:
   m_ObjectHideFlags: 0

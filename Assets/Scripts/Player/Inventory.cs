@@ -32,7 +32,9 @@ public class Inventory : MonoBehaviour
 
     private IEnumerator OnChopWood()
     {
+        EventManager.instance.TriggerEvent(EventType.CHOP_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(1);
+        EventManager.instance.TriggerEvent(EventType.CHOP_PARTICLE_STOP);
         wood += 200;
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 60f });
         EventManager.instance.TriggerEvent(EventType.WOOD_CHANGE, new object[] { wood });
@@ -46,7 +48,9 @@ public class Inventory : MonoBehaviour
 
     private IEnumerator OnHunt()
     {
+        EventManager.instance.TriggerEvent(EventType.HUNT_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(1);
+        EventManager.instance.TriggerEvent(EventType.HUNT_PARTICLE_STOP);
         food += 50;
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 5f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
@@ -60,7 +64,9 @@ public class Inventory : MonoBehaviour
 
     private IEnumerator OnFarm()
     {
+        EventManager.instance.TriggerEvent(EventType.FARM_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(1);
+        EventManager.instance.TriggerEvent(EventType.FARM_PARTICLE_STOP);
         food += 10;
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 30f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });

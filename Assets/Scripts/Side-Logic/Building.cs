@@ -30,7 +30,9 @@ public class Building : Item
 
     private IEnumerator OnBuild()
     {
+        EventManager.instance.TriggerEvent(EventType.BUILD_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(5);
+        EventManager.instance.TriggerEvent(EventType.BUILD_PARTICLE_STOP);
         destination = _destinationAfterBuild;
         _inventory.ConsumeFood(_foodAmount);
         _inventory.ConsumeWood(_woodAmount);

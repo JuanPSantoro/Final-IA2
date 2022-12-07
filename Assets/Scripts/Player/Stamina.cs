@@ -48,7 +48,6 @@ public class Stamina : MonoBehaviour
         {
             _timer += Time.deltaTime;
             _currentEnergy = Mathf.Lerp(_energyOnRestStart, _energyOnRestEnd, _timer /  _restingTime);
-            Debug.Log(_currentEnergy);
             EventManager.instance.TriggerEvent(EventType.STAMINA_CHANGE, new object[] { _currentEnergy / _maxEnergy });
         }
     }
@@ -66,7 +65,9 @@ public class Stamina : MonoBehaviour
 
     private IEnumerator DoSleep()
     {
+        EventManager.instance.TriggerEvent(EventType.SLEEP_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(5); //Replace with animation values
+        EventManager.instance.TriggerEvent(EventType.SLEEP_PARTICLE_STOP);
         _currentEnergy = _maxEnergy;
         EventManager.instance.TriggerEvent(EventType.STAMINA_CHANGE, new object[] { _currentEnergy / _maxEnergy });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
