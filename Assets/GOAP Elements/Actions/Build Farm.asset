@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: Build Farm
   cost: 10
-  target: 4
   preconditions:
   - {fileID: 11400000, guid: 1a349d5447852b74896e3799d40854f9, type: 2}
   - {fileID: 11400000, guid: 50a07e956b9891042ba96c987c8368c1, type: 2}
   - {fileID: 11400000, guid: 04cb807fb93c19e4ba52e93ba2812d30, type: 2}
   - {fileID: 11400000, guid: eefda6b6cfd884a498103c8acb8a5ed5, type: 2}
   effects:
-  - {fileID: 11400000, guid: 32756fb50004128488ae1db1ad38ce84, type: 2}
+  - {fileID: 11400000, guid: d21a48a8bc919de43ae32ae039a8697b, type: 2}
   - {fileID: 11400000, guid: 3268f495fb6771a448eb6fd2478c0eb8, type: 2}
   - {fileID: 11400000, guid: fe8ba7a55caa4b942aeda3c543764bd9, type: 2}
   - {fileID: 11400000, guid: 305881692fbd8d441986e1234817fe2f, type: 2}
   actionEntity: 9
   destination: 2
+  target: 4

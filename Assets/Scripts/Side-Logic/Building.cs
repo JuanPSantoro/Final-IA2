@@ -35,6 +35,7 @@ public class Building : Item
         _inventory.ConsumeFood(_foodAmount);
         _inventory.ConsumeWood(_woodAmount);
         _model.SetActive(true);
+        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 90f });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 }

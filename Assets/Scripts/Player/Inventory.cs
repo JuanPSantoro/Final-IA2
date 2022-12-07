@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1);
         wood += 200;
         _onWoodUpdate?.Invoke(wood);
+        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 60f });
         EventManager.instance.TriggerEvent(EventType.WOOD_CHANGE, new object[] { wood });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
@@ -50,6 +51,7 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1);
         food += 50;
         _onFoodUpdate?.Invoke(food);
+        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 5f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
@@ -64,6 +66,7 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1);
         food += 10;
         _onFoodUpdate?.Invoke(food);
+        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 30f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }

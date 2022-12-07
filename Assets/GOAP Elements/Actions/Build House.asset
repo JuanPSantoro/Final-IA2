@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: Build House
   cost: 10
-  target: 5
   preconditions:
   - {fileID: 11400000, guid: fa643312a2772c6479d8de8b7fd6370a, type: 2}
   - {fileID: 11400000, guid: 28500383fc53b5e4290af9a912e927a4, type: 2}
   - {fileID: 11400000, guid: e0a43fffc24f6654fba893f77c521b7f, type: 2}
   - {fileID: 11400000, guid: eefda6b6cfd884a498103c8acb8a5ed5, type: 2}
   effects:
-  - {fileID: 11400000, guid: 32756fb50004128488ae1db1ad38ce84, type: 2}
+  - {fileID: 11400000, guid: 304933561ac584941a1e9eacdf4502b7, type: 2}
   - {fileID: 11400000, guid: c699438ce60fd9d4f88c55ceec595e63, type: 2}
   - {fileID: 11400000, guid: 412881305c6a2304d82de5b4e652768b, type: 2}
   - {fileID: 11400000, guid: 156b6d50582357d46be57fe2bbe7ee12, type: 2}
   actionEntity: 9
   destination: 4
+  target: 5

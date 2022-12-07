@@ -16,7 +16,42 @@ public class Stamina : MonoBehaviour
     [SerializeField]
     private UnityEvent<float> _onEnergyUpdate;
 
+    [SerializeField]
+    private float _restingTime = 2;
+
+    private bool _resting;
+    private float _energyOnRestStart;
+    private float _energyOnRestEnd;
+    private float _timer;
+
     public float CurrentEnergy { get { return _currentEnergy; } }
+
+    private void Awake()
+    {
+        _currentEnergy = _maxEnergy;
+    }
+
+    private void Start()
+    {
+        EventManager.instance.AddEventListener(EventType.STAMINA_SPENT, OnStaminaSpent);
+    }
+
+    private void OnStaminaSpent(object[] parameters)
+    {
+        _currentEnergy -= (float)parameters[0];
+        EventManager.instance.TriggerEvent(EventType.STAMINA_CHANGE, new object[] { _currentEnergy / _maxEnergy });
+    }
+
+    private void Update()
+    {
+        if (_resting)
+        {
+            _timer += Time.deltaTime;
+            _currentEnergy = Mathf.Lerp(_energyOnRestStart, _energyOnRestEnd, _timer /  _restingTime);
+            Debug.Log(_currentEnergy);
+            EventManager.instance.TriggerEvent(EventType.STAMINA_CHANGE, new object[] { _currentEnergy / _maxEnergy });
+        }
+    }
 
     public void Rest()
     {
@@ -29,25 +64,24 @@ public class Stamina : MonoBehaviour
         StartCoroutine(DoSleep());
     }
 
-    public void ConsumeEnergy(float energy)
-    {
-        _currentEnergy -= energy;
-        _onEnergyUpdate?.Invoke(_currentEnergy);
-    }
-
     private IEnumerator DoSleep()
     {
-        yield return new WaitForSeconds(2); //Replace with animation values
+        yield return new WaitForSeconds(5); //Replace with animation values
         _currentEnergy = _maxEnergy;
-        _onEnergyUpdate?.Invoke(_currentEnergy);
+        EventManager.instance.TriggerEvent(EventType.STAMINA_CHANGE, new object[] { _currentEnergy / _maxEnergy });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
     private IEnumerator DoRest()
     {
-        yield return new WaitForSeconds(3); //Replace with Idle Value
-        _currentEnergy += _energyToRecoverPerRest;
-        _onEnergyUpdate?.Invoke(_currentEnergy);
+        _timer = 0;
+        _energyOnRestStart = _currentEnergy;
+        _energyOnRestEnd = Math.Min(_currentEnergy + _energyToRecoverPerRest, _maxEnergy);
+        _resting = true;
+        yield return new WaitForSeconds(_restingTime);
+        _resting = false;
+        _currentEnergy = _energyOnRestEnd;
+        EventManager.instance.TriggerEvent(EventType.STAMINA_CHANGE, new object[] { _currentEnergy / _maxEnergy });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 }
