@@ -13,11 +13,10 @@ public class Inventory : MonoBehaviour
     private string toolToReach;
 
     [SerializeField]
-    private UnityEvent<int> _onWoodUpdate;
+    private ToolContainer _toolContainer;
+
     [SerializeField]
-    private UnityEvent<int> _onFoodUpdate;
-    [SerializeField]
-    private UnityEvent<string> _onToolChange;
+    private Transform _toolPositionReference;
 
     private void Start()
     {
@@ -35,7 +34,6 @@ public class Inventory : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         wood += 200;
-        _onWoodUpdate?.Invoke(wood);
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 60f });
         EventManager.instance.TriggerEvent(EventType.WOOD_CHANGE, new object[] { wood });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
@@ -50,7 +48,6 @@ public class Inventory : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         food += 50;
-        _onFoodUpdate?.Invoke(food);
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 5f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
@@ -65,7 +62,6 @@ public class Inventory : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         food += 10;
-        _onFoodUpdate?.Invoke(food);
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 30f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
@@ -79,10 +75,12 @@ public class Inventory : MonoBehaviour
     private IEnumerator OnPickup()
     {
         yield return new WaitForSeconds(1);
-        Debug.Log("PICKUP " + toolToReach);
+        if (tool != "")
+            _toolContainer.DropTool(tool);
+
         tool = toolToReach;
+        _toolContainer.PickupTool(tool, _toolPositionReference, Vector3.zero);
         EventManager.instance.TriggerEvent(EventType.TOOL_CHANGE, new object[] { tool });
-        _onToolChange?.Invoke(toolToReach);
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
