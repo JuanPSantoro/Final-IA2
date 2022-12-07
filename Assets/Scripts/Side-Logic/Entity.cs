@@ -8,10 +8,7 @@ using IA2;
 public class Entity : MonoBehaviour
 {
     #region VARIABLES
-    public TextMesh lblNumber, lblId;
 	public Transform body, inventory;
-	public string initialId;
-	public Color initialColor;
 
 	public event Action<Entity>				OnHitFloor = delegate {};
 	public event Action<Entity, Transform>	OnHitWall = delegate {};
@@ -24,9 +21,6 @@ public class Entity : MonoBehaviour
 	List<Item> _items;
 	Vector3 _vel;
 	bool _onFloor;
-	string _label;
-	int _number;
-	Color _color;
 
 	public float speed = 2f;
 
@@ -35,44 +29,6 @@ public class Entity : MonoBehaviour
 
     #region GETTERS & SETTERS
     public IEnumerable<Item> items { get { return _items; } }
-
-    public string label
-    {
-        get { return _label; }
-        set
-        {
-            if (value == null || value.Length == 0)
-            {
-                _label = null;
-                lblId.text = "";
-            }
-            else
-            {
-                _label = value;
-                lblId.text = "\u2190" + value;
-            }
-        }
-    }
-
-    public int number
-    {
-        get { return _number; }
-        set
-        {
-            _number = value;
-            lblNumber.text = value.ToString();
-        }
-    }
-
-    public Color color
-    {
-        get { return _color; }
-        set
-        {
-            _color = value;
-            Paint(value);
-        }
-    }
     #endregion
 
     #endregion
@@ -82,14 +38,10 @@ public class Entity : MonoBehaviour
         _items = new List<Item>();
         _vel = Vector3.zero;
         _onFloor = false;
-        label = initialId;
-        number = 99;
     }
 
     void Start()
     {
-        color = initialColor;
-
         foreach (var it in initialItems)
             AddItem(Instantiate(it));
     }
@@ -230,38 +182,4 @@ public class Entity : MonoBehaviour
         OnReachDestination(this, reachedDst, reachedDst == dstWp);
         OnReach();
 	}
-
-    public void Build()
-    {
-        StartCoroutine(OnBuild());
-    }
-
-    private IEnumerator OnBuild()
-    {
-        yield return new WaitForSeconds(5);
-        EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
-    }
-
-    void Paint(Color color) {
-		foreach(Transform xf in body)
-			xf.GetComponent<Renderer>().material.color = color;
-		lblNumber.color = new Color(1f-color.r, 1f-color.g, 1f-color.b);
-	}
-
-    void OnDrawGizmos()
-    {
-        if (_gizmoPath == null)
-            return;
-
-        Gizmos.color = color;
-        var points = _gizmoPath.Select(w => FloorPos(w));
-        Vector3 last = points.First();
-        foreach (var p in points.Skip(1))
-        {
-            Gizmos.DrawLine(p + Vector3.up, last + Vector3.up);
-            last = p;
-        }
-        if (_gizmoRealTarget != null)
-            Gizmos.DrawCube(_gizmoRealTarget.transform.position + Vector3.up * 1f, Vector3.one * 0.3f);
-    }
 }

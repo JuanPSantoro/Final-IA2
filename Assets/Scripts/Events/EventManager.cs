@@ -8,7 +8,7 @@ public class EventManager : MonoBehaviour
     private static Dictionary<EventType, EventReceiver> events;
     public static EventManager instance;
 
-    void Start()
+    private void Awake()
     {
         if (instance != null)
             Destroy(gameObject);

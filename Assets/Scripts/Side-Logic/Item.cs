@@ -56,7 +56,8 @@ public class Item : MonoBehaviour
 
 	private void OnDestroy()
     {
-		_wp.nearbyItems.Remove(this);
+		if (_wp != null && _wp.nearbyItems != null)
+			_wp.nearbyItems.Remove(this);
 	}
 
 	private void Update ()

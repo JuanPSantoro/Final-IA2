@@ -22,7 +22,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476613985337129422}
-  - component: {fileID: 5701844718755007433}
+  - component: {fileID: 8750006736613903400}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -45,7 +45,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5701844718755007433
+--- !u!114 &8750006736613903400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,11 +54,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8318416780346980699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d957ff249cae52141bf501abda2ad201, type: 3}
+  m_Script: {fileID: 11500000, guid: df32cd7447c8eeb4b8108d745436f028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
-  destination: 5
+  type: 0
+  destination: 4
+  _model: {fileID: 255885961157186118}
+  _woodAmount: 200
+  _foodAmount: 100
+  _staminaAmount: 5
+  _destinationAfterBuild: 5
+  _inventory: {fileID: 0}
 --- !u!1001 &8119141285438671695
 PrefabInstance:
   m_ObjectHideFlags: 0

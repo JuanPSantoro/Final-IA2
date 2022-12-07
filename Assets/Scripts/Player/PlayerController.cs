@@ -144,18 +144,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Enter Build");
             entity.GoTo(_target.transform.position);
-            if (_currentStep.destination == Destination.UNBUILDED_FARM)
-                _target.destination = Destination.FARM;
-            else if (_currentStep.destination == Destination.UNBUILDED_HOUSE)
-                _target.destination = Destination.HOUSE;
-            entity.OnReach += entity.Build;
+            entity.OnReach += ((Building)_target).Build;
         };
 
         buildState.OnExit += a =>
         {
             Debug.Log("FINISH BUILDING " + _target);
-            _target.transform.Find("Model").gameObject.SetActive(true);
-            entity.OnReach -= entity.Build;
+            entity.OnReach -= ((Building)_target).Build;
         };
 
         StateConfigurer.Create(anyState)

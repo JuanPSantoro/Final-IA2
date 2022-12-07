@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     public int wood;
     public int food;
     public string tool;
-
+    
     private string toolToReach;
 
     [SerializeField]
@@ -19,6 +19,13 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private UnityEvent<string> _onToolChange;
 
+    private void Start()
+    {
+        EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
+        EventManager.instance.TriggerEvent(EventType.WOOD_CHANGE, new object[] { wood });
+        EventManager.instance.TriggerEvent(EventType.TOOL_CHANGE, new object[] { tool });
+    }
+
     public void ChopWood()
     {
         StartCoroutine(OnChopWood());
@@ -27,8 +34,9 @@ public class Inventory : MonoBehaviour
     private IEnumerator OnChopWood()
     {
         yield return new WaitForSeconds(1);
-        wood += 30;
+        wood += 200;
         _onWoodUpdate?.Invoke(wood);
+        EventManager.instance.TriggerEvent(EventType.WOOD_CHANGE, new object[] { wood });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
@@ -40,8 +48,9 @@ public class Inventory : MonoBehaviour
     private IEnumerator OnHunt()
     {
         yield return new WaitForSeconds(1);
-        food += 30;
+        food += 50;
         _onFoodUpdate?.Invoke(food);
+        EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
@@ -53,8 +62,9 @@ public class Inventory : MonoBehaviour
     private IEnumerator OnFarm()
     {
         yield return new WaitForSeconds(1);
-        food += 50;
+        food += 10;
         _onFoodUpdate?.Invoke(food);
+        EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 
@@ -67,6 +77,8 @@ public class Inventory : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Debug.Log("PICKUP " + toolToReach);
+        tool = toolToReach;
+        EventManager.instance.TriggerEvent(EventType.TOOL_CHANGE, new object[] { tool });
         _onToolChange?.Invoke(toolToReach);
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
@@ -74,5 +86,17 @@ public class Inventory : MonoBehaviour
     public void TargetTool(string tool)
     {
         toolToReach = tool;
+    }
+
+    public void ConsumeWood(int amount)
+    {
+        wood -= amount;
+        EventManager.instance.TriggerEvent(EventType.WOOD_CHANGE, new object[] { wood });
+    }
+
+    public void ConsumeFood(int amount)
+    {
+        food -= amount;
+        EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
     }
 }

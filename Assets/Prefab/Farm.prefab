@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2211460958697204042}
   - component: {fileID: 4784283481713177875}
+  - component: {fileID: 6857415760853088236}
   m_Layer: 0
   m_Name: Farm
   m_TagString: Untagged
@@ -46,6 +47,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   destination: 3
+--- !u!114 &6857415760853088236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7552919792917066557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df32cd7447c8eeb4b8108d745436f028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  destination: 2
+  _model: {fileID: 8655277730965431825}
+  _woodAmount: 100
+  _foodAmount: 40
+  _staminaAmount: 0
+  _destinationAfterBuild: 3
+  _inventory: {fileID: 0}
 --- !u!1001 &809614578635013912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,6 +156,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86ffc5910d8c745458984574b21bb2fa, type: 3}
+--- !u!1 &8655277730965431825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 86ffc5910d8c745458984574b21bb2fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 809614578635013912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5640442861592630274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 86ffc5910d8c745458984574b21bb2fa,
