@@ -23,10 +23,6 @@ public class Goap : MonoBehaviour
 
                 var validActions = actions.Where(a => a.preconditions.All(pre => pre.ExecutePreCondition(curr.worldState))).ToList();
 
-                //DebugState(curr);
-                //DebugWS(curr.worldState);
-                //DebugValidActions(validActions);
-
                 return validActions.Aggregate(FList.Create<AStarNormal<GoapState>.Arc>(), (possibleList, action) =>
                     {
                         var newState = new GoapState(curr);
@@ -50,37 +46,13 @@ public class Goap : MonoBehaviour
             return null;
         }
 
+        var actionUI = FindObjectOfType<ActionsUI>();
         foreach (var act in seq.Skip(1))
         {
             Debug.Log(act);
+            actionUI.LogText(act.ToString());
         }
 
         return seq.Skip(1).Select(x => x.generator);
-    }
-
-    public static void DebugState(GoapState state)
-    {
-        if (state.generator != null)
-            Debug.Log("COMES FROM: " + state.generator.actionName);
-    }
-
-    public static void DebugValidActions(IEnumerable<GoapActionSO> actions)
-    {
-        Debug.Log("---------------------------");
-        foreach (var current in actions)
-        {
-            Debug.Log(current.actionName);
-        }
-        Debug.Log("---------------------------");
-    }
-
-    public static void DebugWS(WorldState ws)
-    {
-        Debug.Log("------------- WORLD STATE --------------");
-        Debug.Log("E: " + ws.energy);
-        Debug.Log("F: " + ws.food);
-        Debug.Log("W: " + ws.wood);
-        Debug.Log("Tool: " + ws.tool);
-        Debug.Log("------------- WORLD STATE --------------");
     }
 }

@@ -189,6 +189,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("No More Actions");
         _fsm.Feed(ActionEntity.Success);
         EventManager.instance.TriggerEvent(EventType.FSM_FINISH);
+        FindObjectOfType<ActionsUI>().HideUI();
     }
 }
 

@@ -59,6 +59,7 @@ public class Planner : MonoBehaviour
                 }
             }
 
+            FindObjectOfType<ActionsUI>().ShowUI();
             FindObjectOfType<PlayerController>().ExecutePlan(plan);
 		}
 	}
