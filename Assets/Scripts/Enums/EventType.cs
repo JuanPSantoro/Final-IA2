@@ -3,6 +3,7 @@
     //FSM
     FSM_NEXT_STEP,
     FSM_FAIL_STEP,
+    FSM_FINISH,
 
     //RESOURCES CHANGE
     TOOL_CHANGE,
