@@ -6126,19 +6126,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_Objective
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 6b868be040c2b844da8b4bb437a68745,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: GoapObjectiveSO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 978115558}
         m_MethodName: set_Heuristic
         m_Mode: 2
         m_Arguments:
@@ -6150,7 +6138,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 978115558}
+        m_MethodName: set_Objective
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 6b868be040c2b844da8b4bb437a68745,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: GoapObjectiveSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 978115558}
         m_MethodName: StartPlan
         m_Mode: 1
         m_Arguments:
@@ -11805,19 +11805,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_Objective
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 13b0d04305fd5344ab5471e6c9c345e1,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: GoapObjectiveSO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 978115558}
         m_MethodName: set_Heuristic
         m_Mode: 2
         m_Arguments:
@@ -11829,7 +11817,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 978115558}
+        m_MethodName: set_Objective
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 13b0d04305fd5344ab5471e6c9c345e1,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: GoapObjectiveSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 978115558}
         m_MethodName: StartPlan
         m_Mode: 1
         m_Arguments:
@@ -21495,6 +21495,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventToPlayParticles: 10
   _eventToStopParticles: 11
+--- !u!114 &978115558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6910984419018739703, guid: b5ade52db48c0d14d9cbbcb0997787ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 4757119276877444301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066dc4b96d0e5484ea89b6351d619032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &989298832
 GameObject:
   m_ObjectHideFlags: 0
@@ -37043,19 +37055,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_Objective
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: fb2ef313d696ece4db296a61f1193c69,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: GoapObjectiveSO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 978115558}
         m_MethodName: set_Heuristic
         m_Mode: 2
         m_Arguments:
@@ -37067,7 +37067,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 978115558}
+        m_MethodName: set_Objective
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: fb2ef313d696ece4db296a61f1193c69,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: GoapObjectiveSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 978115558}
         m_MethodName: StartPlan
         m_Mode: 1
         m_Arguments:
