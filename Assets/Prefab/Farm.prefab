@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d957ff249cae52141bf501abda2ad201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   destination: 3
 --- !u!114 &6857415760853088236
 MonoBehaviour:
@@ -59,12 +58,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df32cd7447c8eeb4b8108d745436f028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   destination: 2
   _model: {fileID: 8655277730965431825}
   _woodAmount: 100
   _foodAmount: 40
-  _staminaAmount: 0
+  _staminaAmount: 30
   _destinationAfterBuild: 3
   _inventory: {fileID: 0}
 --- !u!1001 &809614578635013912

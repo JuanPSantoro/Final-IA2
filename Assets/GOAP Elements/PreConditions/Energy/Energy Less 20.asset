@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80fb0484fbf33204296d85b1e6e5a7af, type: 3}
-  m_Name: Energy Less 90.5
+  m_Name: Energy Less 20
   m_EditorClassIdentifier: 
   comparative: 3
-  energyAmount: 90.5
+  energyAmount: 20

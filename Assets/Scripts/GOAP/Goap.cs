@@ -49,7 +49,6 @@ public class Goap : MonoBehaviour
         var actionUI = FindObjectOfType<ActionsUI>();
         foreach (var act in seq.Skip(1))
         {
-            Debug.Log(act);
             actionUI.LogText(act.ToString());
         }
 

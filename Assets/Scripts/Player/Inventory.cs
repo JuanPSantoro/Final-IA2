@@ -13,10 +13,10 @@ public class Inventory : MonoBehaviour
     private string toolToReach;
 
     [SerializeField]
-    private ToolContainer _toolContainer;
+    private ToolContainer _toolContainer = default;
 
     [SerializeField]
-    private Transform _toolPositionReference;
+    private Transform _toolPositionReference = default;
 
     private void Start()
     {
@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1);
         EventManager.instance.TriggerEvent(EventType.HUNT_PARTICLE_STOP);
         food += 50;
-        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 5f });
+        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 30f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
@@ -68,7 +68,7 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1);
         EventManager.instance.TriggerEvent(EventType.FARM_PARTICLE_STOP);
         food += 10;
-        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 30f });
+        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 5f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
@@ -86,6 +86,7 @@ public class Inventory : MonoBehaviour
 
         tool = toolToReach;
         _toolContainer.PickupTool(tool, _toolPositionReference, Vector3.zero);
+        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 15f });
         EventManager.instance.TriggerEvent(EventType.TOOL_CHANGE, new object[] { tool });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }

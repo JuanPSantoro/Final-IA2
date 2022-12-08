@@ -9,9 +9,9 @@ public class HiddeableUI : MonoBehaviour
     [SerializeField]
     private float _xShow;
     [SerializeField]
-    private float _animationTime;
+    private float _animationTime = 0.1f;
     [SerializeField]
-    private bool _startHided;
+    private bool _startHided = false;
 
     private bool _animating;
     private float _currentTime;

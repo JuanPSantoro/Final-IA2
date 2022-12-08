@@ -7,6 +7,7 @@ using System.Linq;
 public class GoapObjectiveSO : ScriptableObject
 {
     public List<PreConditionSO> preconditions;
+    public int sleepsToInterrupt = 5;
 
     public bool Satisfies(WorldState ws)
     {

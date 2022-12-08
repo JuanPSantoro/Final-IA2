@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EnergyBarUI : MonoBehaviour
 {    
     [SerializeField]
-    private Slider _fill;
+    private Slider _fill = default;
 
     private void Start()
     {

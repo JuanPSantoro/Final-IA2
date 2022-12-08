@@ -8969,7 +8969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _xHide: 225
   _xShow: 0
-  _animationTime: 0.1
+  _animationTime: 0.25
   _startHided: 1
   _logText: {fileID: 406119362}
 --- !u!1 &591838676 stripped
@@ -31795,7 +31795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _xHide: 65
   _xShow: 0
-  _animationTime: 0.1
+  _animationTime: 0.25
   _startHided: 0
 --- !u!1 &1144135825
 GameObject:

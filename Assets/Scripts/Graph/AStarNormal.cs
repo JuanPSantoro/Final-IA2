@@ -39,16 +39,13 @@ public class AStarNormal<Node> where Node : class
 		var state = initialState;
         while (state.open.Count > 0 && !state.finished)
         {
-			//Debugger gets buggy af with this, can't watch variable:
 			state = state.Clone();
 
             var candidate = state.open.OrderBy(x => state.fs[x]).First();
             state.current = candidate;
 
-            //DebugGoap(state);
             if (satisfies(candidate))
             {
-				U.Log("SATISFIED");
                 state.finished = true;
             }
             else

@@ -5,17 +5,17 @@ using UnityEngine;
 public class Building : Item
 {
     [SerializeField]
-    private GameObject _model;
+    private GameObject _model = default;
     [SerializeField]
-    private int _woodAmount;
+    private int _woodAmount = 0;
     [SerializeField]
-    private int _foodAmount;
+    private int _foodAmount = 0;
     [SerializeField] 
-    private float _staminaAmount;
+    private float _staminaAmount = 0;
     [SerializeField]
-    private Destination _destinationAfterBuild;
+    private Destination _destinationAfterBuild = default;
     [SerializeField]
-    private Inventory _inventory;
+    private Inventory _inventory = default;
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class Building : Item
         _inventory.ConsumeFood(_foodAmount);
         _inventory.ConsumeWood(_woodAmount);
         _model.SetActive(true);
-        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 90f });
+        EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { _staminaAmount });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
     }
 }

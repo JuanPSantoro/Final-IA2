@@ -21,6 +21,16 @@ public class Planner : MonoBehaviour
             world = FindObjectOfType<World>();
     }
 
+    private void Start()
+    {
+        EventManager.instance.AddEventListener(EventType.RE_PLAN, OnReplan);
+    }
+
+    private void OnReplan(object[] parameters)
+    {
+        StartPlan();
+    }
+
     public void StartPlan()
     {
         if (_goal != null && _heuristic != null)
@@ -38,9 +48,27 @@ public class Planner : MonoBehaviour
             return _heuristic.ProcessHeuristic(curr.worldState);
         };
 
+        var currentSleepCount = 0;
+        var replanOnEnd = false;
         Func<GoapState, bool> objective = (curr) =>
         {
-            return _goal.Satisfies(curr.worldState) /*|| (curr.generator != null && curr.generator.actionName == "Sleep")*/;
+            if (_goal.Satisfies(curr.worldState))
+            {
+                return true;
+            }
+            else
+            {
+                if ((curr.generator != null && curr.generator.actionName == "Sleep"))
+                {
+                    currentSleepCount++;
+                    if (currentSleepCount > _goal.sleepsToInterrupt)
+                    {
+                        replanOnEnd = true;
+                        return true;
+                    }
+                }
+            }
+            return false;
         };
 
 		var plan = Goap.Execute(initial, null, objective, h, actions);
@@ -60,7 +88,7 @@ public class Planner : MonoBehaviour
             }
 
             FindObjectOfType<ActionsUI>().ShowUI();
-            FindObjectOfType<PlayerController>().ExecutePlan(plan);
+            FindObjectOfType<PlayerController>().ExecutePlan(plan, replanOnEnd);
 		}
 	}
 }

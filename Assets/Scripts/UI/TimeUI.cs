@@ -3,7 +3,7 @@
 public class TimeUI : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _clock;
+    private GameObject _clock = default;
 
     public void UpdateClock(float timeOfDay)
     {

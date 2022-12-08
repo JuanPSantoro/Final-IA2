@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private Entity entity;
     private Item _target;
 
+    private bool replan;
+
     void Start()
     {
         inventory = GetComponent<Inventory>();
@@ -172,9 +174,10 @@ public class PlayerController : MonoBehaviour
         _fsm = new EventFSM<ActionEntity>(endState, anyState);
     }
 
-    public void ExecutePlan(IEnumerable<GoapActionSO> plan)
+    public void ExecutePlan(IEnumerable<GoapActionSO> plan, bool replanOnEnd)
     {
         _plan = plan;
+        replan = replanOnEnd;
         _fsm.Feed(ActionEntity.NextStep);
     }
 
@@ -186,10 +189,16 @@ public class PlayerController : MonoBehaviour
     void Finish()
     {
         entity.OnReach -= Finish;
-        Debug.Log("No More Actions");
-        _fsm.Feed(ActionEntity.Success);
-        EventManager.instance.TriggerEvent(EventType.FSM_FINISH);
-        FindObjectOfType<ActionsUI>().HideUI();
+        if (replan)
+        {
+            EventManager.instance.TriggerEvent(EventType.RE_PLAN);
+        }
+        else
+        {
+            _fsm.Feed(ActionEntity.Success);
+            EventManager.instance.TriggerEvent(EventType.FSM_FINISH);
+            FindObjectOfType<ActionsUI>().HideUI();
+        }
     }
 }
 

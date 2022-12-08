@@ -40,12 +40,6 @@ public class Entity : MonoBehaviour
         _onFloor = false;
     }
 
-    void Start()
-    {
-        foreach (var it in initialItems)
-            AddItem(Instantiate(it));
-    }
-
     #region MOVEMENT & COLLISION
     void FixedUpdate()
     {
@@ -84,43 +78,6 @@ public class Entity : MonoBehaviour
         if (e != null && e != this)
         {
             Debug.Log(e.name + " hit " + name);
-        }
-    }
-    #endregion
-
-    #region ITEM MANAGEMENT
-    public void AddItem(Item item) {
-		_items.Add(item);
-		item.OnInventoryAdd();
-		item.transform.parent = inventory;
-		RefreshItemPositions();
-	}
-
-	public Item Removeitem(Item item) {
-		_items.Remove(item);
-		item.OnInventoryRemove();
-		item.transform.parent = null;
-		RefreshItemPositions();
-		return item;
-	}
-
-	public IEnumerable<Item> RemoveAllitems() {
-		var ret = _items;
-		foreach(var item in items) {
-			item.OnInventoryRemove();
-		}
-		_items = new List<Item>();
-		RefreshItemPositions();
-		return ret;
-	}
-
-    void RefreshItemPositions()
-    {
-        const float Dist = 1.25f;
-        for (int i = 0; i < _items.Count; i++)
-        {
-            var phi = (i + 0.5f) * Mathf.PI / (_items.Count);
-            _items[i].transform.localPosition = new Vector3(-Mathf.Cos(phi) * Dist, Mathf.Sin(phi) * Dist, 0f);
         }
     }
     #endregion
@@ -175,7 +132,7 @@ public class Entity : MonoBehaviour
 
 		if(reachedDst == dstWp) {
 			_vel = (FloorPos(destination) - FloorPos(this)).normalized;
-			yield return new WaitUntil(() => (FloorPos(destination) - FloorPos(this)).sqrMagnitude < 0.05f);
+			yield return new WaitUntil(() => (FloorPos(destination) - FloorPos(this)).sqrMagnitude < 0.1f);
 		}
 		
 		_vel = Vector3.zero;

@@ -8,9 +8,9 @@ public class ParticleEmitter : MonoBehaviour
 {
     private ParticleSystem _particleSystem;
     [SerializeField]
-    private EventType _eventToPlayParticles;
+    private EventType _eventToPlayParticles = default;
     [SerializeField]
-    private EventType _eventToStopParticles;
+    private EventType _eventToStopParticles = default;
 
     private void Start()
     {
@@ -22,14 +22,12 @@ public class ParticleEmitter : MonoBehaviour
 
     private void OnParticleStop(object[] parameters)
     {
-        Debug.Log("STOP PARTICLES");
         _particleSystem.Stop(true);
     }
 
     private void OnParticlePlay(object[] parameters)
     {
         transform.position = (Vector3)parameters[0];
-        Debug.Log("EMIT PARTICLES");
         _particleSystem.Play();
     }
 }

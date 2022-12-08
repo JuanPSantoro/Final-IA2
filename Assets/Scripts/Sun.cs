@@ -10,10 +10,10 @@ public class Sun : MonoBehaviour
     private Light _nightLight;
 
     [SerializeField]
-    private GameObject _sun;
+    private GameObject _sun = default;
 
     [SerializeField]
-    private TimeUI _timeUI;
+    private TimeUI _timeUI = default;
 
     [SerializeField, Range(0, 24)]
     private float _timeOfDay = 12;
@@ -54,13 +54,13 @@ public class Sun : MonoBehaviour
         if (!_daytimeTriggered && _timeOfDay > 6 && _timeOfDay < 7)
         {
             _daytimeTriggered = true;
-            Debug.Log("DAYTIME STARTS AT: " + _timeOfDay);
+            EventManager.instance.TriggerEvent(EventType.NIGHT_TIME_END);
         }
 
         if (!_nighttimeTriggered && _timeOfDay > 18 && _timeOfDay < 19)
         {
             _nighttimeTriggered = true;
-            Debug.Log("NIGHTTIME STARTS AT: " + _timeOfDay);
+            EventManager.instance.TriggerEvent(EventType.NIGHT_TIME_START);
         }
 
         if (_timeOfDay > 10 && _timeOfDay < 11)

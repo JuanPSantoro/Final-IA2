@@ -40,9 +40,7 @@ public class Navigation : MonoBehaviour
 				, (wa, wb) => Vector3.Distance(wa.transform.position, wb.transform.position)
 				, w => w == dstWp
 				, w =>
-					w.adyacent
-						.Where(a => a.nearbyItems.All(it => it.type != ItemType.Door))
-						.Select(a => new AStarNormal<Waypoint>.Arc(a, Vector3.Distance(a.transform.position, w.transform.position)))
+					w.adyacent.Select(a => new AStarNormal<Waypoint>.Arc(a, Vector3.Distance(a.transform.position, w.transform.position)))
 			);
 			if(path == null)
 				return false;

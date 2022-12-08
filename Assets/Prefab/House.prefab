@@ -57,12 +57,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df32cd7447c8eeb4b8108d745436f028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   destination: 4
   _model: {fileID: 255885961157186118}
   _woodAmount: 200
   _foodAmount: 100
-  _staminaAmount: 5
+  _staminaAmount: 90
   _destinationAfterBuild: 5
   _inventory: {fileID: 0}
 --- !u!1001 &8119141285438671695

@@ -7,11 +7,11 @@ using UnityEngine.Events;
 public class Stamina : MonoBehaviour
 {
     [SerializeField]
-    private float _energyToRecoverPerRest;
+    private float _energyToRecoverPerRest = 1;
 
     [SerializeField]
-    private float _maxEnergy;
-    private float _currentEnergy;
+    private float _maxEnergy = 100;
+    private float _currentEnergy = 100;
 
     [SerializeField]
     private UnityEvent<float> _onEnergyUpdate;
@@ -60,13 +60,13 @@ public class Stamina : MonoBehaviour
     public void Sleep()
     {
         _currentEnergy = _maxEnergy;
-        StartCoroutine(DoSleep());
+        EventManager.instance.TriggerEvent(EventType.SLEEP_PARTICLE_PLAY, new object[] { transform.position });
+        EventManager.instance.AddEventListener(EventType.NIGHT_TIME_END, OnNightTimeEnd);
     }
 
-    private IEnumerator DoSleep()
+    private void OnNightTimeEnd(object[] parameters)
     {
-        EventManager.instance.TriggerEvent(EventType.SLEEP_PARTICLE_PLAY, new object[] { transform.position });
-        yield return new WaitForSeconds(5); //Replace with animation values
+        EventManager.instance.RemoveEventListener(EventType.NIGHT_TIME_END, OnNightTimeEnd);
         EventManager.instance.TriggerEvent(EventType.SLEEP_PARTICLE_STOP);
         _currentEnergy = _maxEnergy;
         EventManager.instance.TriggerEvent(EventType.STAMINA_CHANGE, new object[] { _currentEnergy / _maxEnergy });

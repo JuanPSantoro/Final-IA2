@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class ResourceUI : MonoBehaviour
 {
     [SerializeField]
-    private Text _text;
+    private Text _text = default;
     [SerializeField]
-    private EventType _eventToListen;
+    private EventType _eventToListen = default;
 
     private void Start()
     {
