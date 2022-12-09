@@ -13,14 +13,6 @@ public class Planner : MonoBehaviour
     public GoapObjectiveSO Objective { set { _goal = value; } }
     public GoapHeuristicSO Heuristic { set { _heuristic = value; } }
 
-    public World world;
-
-    private void Awake()
-    {
-        if (world == null)
-            world = FindObjectOfType<World>();
-    }
-
     private void Start()
     {
         EventManager.instance.AddEventListener(EventType.RE_PLAN, OnReplan);
@@ -41,7 +33,7 @@ public class Planner : MonoBehaviour
 		yield return new WaitForSeconds(0.2f);
 		
         GoapState initial = new GoapState();
-        initial.worldState = world.GetCurrentWorldState();
+        initial.worldState = GetWorldState();
 
         Func<GoapState, float> h = (curr) =>
         {
@@ -76,19 +68,22 @@ public class Planner : MonoBehaviour
 		if (plan == null)
 			Debug.Log("Couldn't plan");
 		else {
-            var currentWorldState = world.GetCurrentWorldState();
-
-            foreach (var currentAction in plan)
-            {
-                foreach (var currentEffect in currentAction.effects)
-                {
-                    currentWorldState = currentEffect.ExecuteEffect(currentWorldState);
-                    world.SaveWorldState(currentWorldState);
-                }
-            }
-
             FindObjectOfType<ActionsUI>().ShowUI();
             FindObjectOfType<PlayerController>().ExecutePlan(plan, replanOnEnd);
 		}
 	}
+
+    private WorldState GetWorldState()
+    {
+        WorldState ws = new WorldState();
+        var inventory = GetComponent<Inventory>();
+        var city = FindObjectOfType<CityManager>();
+        ws.energy = GetComponent<Stamina>().CurrentEnergy;
+        ws.wood = inventory.wood;
+        ws.food = inventory.food;
+        ws.tool = inventory.tool;
+        ws.farms = city.FarmsAmount();
+        ws.houses = city.IsHouseBuilded();
+        return ws;
+    }
 }
