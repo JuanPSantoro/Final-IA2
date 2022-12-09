@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class Sun : MonoBehaviour
     private float _secondsPerDay;
 
     public float timeMultiplier = 1;
+    private float sleepMultiplier = 1;
 
     private bool _nighttimeTriggered;
     private bool _daytimeTriggered;
@@ -32,13 +34,26 @@ public class Sun : MonoBehaviour
         _secondsPerHour = _secondsPerMinute * 60;
         _secondsPerDay = _secondsPerHour * 24;
 
+        EventManager.instance.AddEventListener(EventType.SLEEP_PARTICLE_PLAY, OnSleepStart);
+        EventManager.instance.AddEventListener(EventType.SLEEP_PARTICLE_STOP, OnSleepEnd);
+
         UpdateSunRotation();
         UpdateTimeUI();
     }
 
+    private void OnSleepEnd(object[] parameters)
+    {
+        sleepMultiplier = 1;
+    }
+
+    private void OnSleepStart(object[] parameters)
+    {
+        sleepMultiplier = 10;
+    }
+
     void Update()
     {
-        _timeOfDay += (Time.deltaTime / _secondsPerHour) * timeMultiplier;
+        _timeOfDay += (Time.deltaTime / _secondsPerHour) * timeMultiplier * sleepMultiplier;
 
         if (_timeOfDay >= 24)
         {

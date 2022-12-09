@@ -23,7 +23,7 @@ public class Building : Item
             _model.SetActive(false);
     }
 
-    public void Build()
+    public override void ExecuteAction()
     {
         StartCoroutine(OnBuild());
     }

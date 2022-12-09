@@ -11,6 +11,11 @@ public class Item : MonoBehaviour
 		_wp.nearbyItems.Add(this);
 	}
 
+    virtual public void ExecuteAction()
+    {
+
+    }
+
 	private void OnDestroy()
     {
 		if (_wp != null && _wp.nearbyItems != null)

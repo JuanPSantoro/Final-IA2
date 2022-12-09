@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
         chopState.OnExit += a =>
         {
+            _target.ExecuteAction();
             entity.OnReach -= inventory.ChopWood;
         };
 
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
         huntState.OnExit += a =>
         {
+            _target.ExecuteAction();
             entity.OnReach -= inventory.Hunt;
         };
 
@@ -146,13 +148,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Enter Build");
             entity.GoTo(_target.transform.position);
-            entity.OnReach += ((Building)_target).Build;
+            entity.OnReach += _target.ExecuteAction;
         };
 
         buildState.OnExit += a =>
         {
             Debug.Log("FINISH BUILDING " + _target);
-            entity.OnReach -= ((Building)_target).Build;
+            entity.OnReach -= _target.ExecuteAction;
         };
 
         StateConfigurer.Create(anyState)

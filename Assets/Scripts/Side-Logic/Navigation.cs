@@ -84,4 +84,16 @@ public class Navigation : MonoBehaviour
         var item = filteredItems.OrderBy(x => Vector3.SqrMagnitude(x.transform.position - from)).FirstOrDefault();
         return item;
     }
+
+    public void RemoveItem(Item item)
+    {
+        if (_allItems.Contains(item))
+            _allItems.Remove(item);
+    }
+
+    public void AddItem(Item item)
+    {
+        if (!_allItems.Contains(item))
+            _allItems.Add(item);
+    }
 }

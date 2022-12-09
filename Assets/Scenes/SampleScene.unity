@@ -6029,7 +6029,7 @@ MonoBehaviour:
   _sun: {fileID: 1968325817}
   _timeUI: {fileID: 718943266}
   _timeOfDay: 12
-  timeMultiplier: 3600
+  timeMultiplier: 360
 --- !u!4 &149853514
 Transform:
   m_ObjectHideFlags: 0
