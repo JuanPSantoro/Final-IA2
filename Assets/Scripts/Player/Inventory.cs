@@ -15,6 +15,15 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Transform _toolPositionReference = default;
 
+    [SerializeField]
+    private AudioClipSO _chopAudio = default;
+
+    [SerializeField]
+    private AudioClipSO _huntAudio = default;
+
+    [SerializeField]
+    private AudioClipSO _farmAudio = default;
+
     private void Start()
     {
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
@@ -29,6 +38,7 @@ public class Inventory : MonoBehaviour
 
     private IEnumerator OnChopWood()
     {
+        SoundManager.instance.PlayOnPosition(_chopAudio, transform.position);
         EventManager.instance.TriggerEvent(EventType.CHOP_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(1);
         EventManager.instance.TriggerEvent(EventType.CHOP_PARTICLE_STOP);
@@ -36,6 +46,7 @@ public class Inventory : MonoBehaviour
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 60f });
         EventManager.instance.TriggerEvent(EventType.WOOD_CHANGE, new object[] { wood });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
+        SoundManager.instance.Stop();
     }
 
     public void Hunt()
@@ -45,6 +56,7 @@ public class Inventory : MonoBehaviour
 
     private IEnumerator OnHunt()
     {
+        SoundManager.instance.PlayOnPosition(_huntAudio, transform.position);
         EventManager.instance.TriggerEvent(EventType.HUNT_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(1);
         EventManager.instance.TriggerEvent(EventType.HUNT_PARTICLE_STOP);
@@ -52,6 +64,7 @@ public class Inventory : MonoBehaviour
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 30f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
+        SoundManager.instance.Stop();
     }
 
     public void Farm()
@@ -61,6 +74,7 @@ public class Inventory : MonoBehaviour
 
     private IEnumerator OnFarm()
     {
+        SoundManager.instance.PlayOnPosition(_farmAudio, transform.position);
         EventManager.instance.TriggerEvent(EventType.FARM_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(1);
         EventManager.instance.TriggerEvent(EventType.FARM_PARTICLE_STOP);
@@ -68,6 +82,7 @@ public class Inventory : MonoBehaviour
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 5f });
         EventManager.instance.TriggerEvent(EventType.FOOD_CHANGE, new object[] { food });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);
+        SoundManager.instance.Stop();
     }
 
     public void PickUp()

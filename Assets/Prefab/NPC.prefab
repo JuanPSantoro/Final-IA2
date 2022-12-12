@@ -186,8 +186,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4757119277836155268}
   - component: {fileID: 4757119277836155264}
-  - component: {fileID: 4757119277836155265}
-  - component: {fileID: 4757119277836155270}
   - component: {fileID: 4757119277836155271}
   - component: {fileID: 4757119277836155266}
   - component: {fileID: 4757119277836155267}
@@ -228,30 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6319cb7f1476504ea21141af1db5194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4757119277836155265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4757119277836155269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b6c33bfa1a354b40bfe0875f4267e2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4757119277836155270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4757119277836155269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27c7b0f65ac6358428cb189620ed4180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4757119277836155271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +242,6 @@ MonoBehaviour:
   inventory: {fileID: 4757119277836155268}
   _speed: 10
   _gridRadius: 20
-  _targetGrid: {fileID: 0}
 --- !u!114 &4757119277836155266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +257,7 @@ MonoBehaviour:
   _energyToRecoverPerRest: 30
   _maxEnergy: 100
   _restingTime: 2
+  _sleepAudio: {fileID: 11400000, guid: f55f49a375bbb394f8f2e0bea603adde, type: 2}
 --- !u!114 &4757119277836155267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +275,9 @@ MonoBehaviour:
   tool: 
   _toolContainer: {fileID: 0}
   _toolPositionReference: {fileID: 5057505610060189137}
+  _chopAudio: {fileID: 11400000, guid: df99b15b6ce6275499740aa78cb990f3, type: 2}
+  _huntAudio: {fileID: 11400000, guid: 9496e61b74f6800408e9fa027a8f96b7, type: 2}
+  _farmAudio: {fileID: 11400000, guid: f030f0368dce6054da21eac75ae5cd04, type: 2}
 --- !u!114 &6910984419018739703
 MonoBehaviour:
   m_ObjectHideFlags: 0

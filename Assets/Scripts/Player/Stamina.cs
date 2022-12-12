@@ -24,6 +24,9 @@ public class Stamina : MonoBehaviour
     private float _energyOnRestEnd;
     private float _timer;
 
+    [SerializeField]
+    private AudioClipSO _sleepAudio = default;
+
     public float CurrentEnergy { get { return _currentEnergy; } }
 
     private void Awake()
@@ -59,6 +62,7 @@ public class Stamina : MonoBehaviour
 
     public void Sleep()
     {
+        SoundManager.instance.PlayOnPosition(_sleepAudio, transform.position);
         _currentEnergy = _maxEnergy;
         EventManager.instance.TriggerEvent(EventType.SLEEP_PARTICLE_PLAY, new object[] { transform.position });
         EventManager.instance.AddEventListener(EventType.NIGHT_TIME_END, OnNightTimeEnd);
@@ -66,6 +70,7 @@ public class Stamina : MonoBehaviour
 
     private void OnNightTimeEnd(object[] parameters)
     {
+        SoundManager.instance.Stop();
         EventManager.instance.RemoveEventListener(EventType.NIGHT_TIME_END, OnNightTimeEnd);
         EventManager.instance.TriggerEvent(EventType.SLEEP_PARTICLE_STOP);
         _currentEnergy = _maxEnergy;

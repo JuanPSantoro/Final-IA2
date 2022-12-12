@@ -17,6 +17,9 @@ public class Building : Item
     [SerializeField]
     private Inventory _inventory = default;
 
+    [SerializeField]
+    private AudioClipSO _buildAudio = default;
+
     private void Start()
     {
         if (destination == Destination.UNBUILDED_FARM || destination == Destination.UNBUILDED_HOUSE)
@@ -30,8 +33,10 @@ public class Building : Item
 
     private IEnumerator OnBuild()
     {
+        SoundManager.instance.PlayOnPosition(_buildAudio, transform.position);
         EventManager.instance.TriggerEvent(EventType.BUILD_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(5);
+        SoundManager.instance.Stop();
         EventManager.instance.TriggerEvent(EventType.BUILD_PARTICLE_STOP);
         destination = _destinationAfterBuild;
         _inventory.ConsumeFood(_foodAmount);

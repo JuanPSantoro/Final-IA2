@@ -52,6 +52,7 @@ MonoBehaviour:
   _staminaAmount: 30
   _destinationAfterBuild: 3
   _inventory: {fileID: 0}
+  _buildAudio: {fileID: 11400000, guid: 3daa64d0cdb36084385b2219dd16ff9c, type: 2}
 --- !u!114 &9111727674182127883
 MonoBehaviour:
   m_ObjectHideFlags: 0

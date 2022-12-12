@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Stamina stamina;
     private IEnumerable<GoapActionSO> _plan;
     private GoapActionSO _currentStep;
-    private Entity entity;
+    private Movement entity;
     private Item _target;
 
     private bool replan;
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         inventory = GetComponent<Inventory>();
         stamina = GetComponent<Stamina>();
-        entity = GetComponent<Entity>();
+        entity = GetComponent<Movement>();
         EventManager.instance.AddEventListener(EventType.FSM_NEXT_STEP, OnNextStep);
         EventManager.instance.AddEventListener(EventType.FSM_FAIL_STEP, OnFailStep);
         CreateFSM();
@@ -145,14 +145,12 @@ public class PlayerController : MonoBehaviour
 
         buildState.OnEnter += a =>
         {
-            Debug.Log("Enter Build");
             entity.GoTo(_target.transform.position);
             entity.OnReach += _target.ExecuteAction;
         };
 
         buildState.OnExit += a =>
         {
-            Debug.Log("FINISH BUILDING " + _target);
             entity.OnReach -= _target.ExecuteAction;
         };
 
