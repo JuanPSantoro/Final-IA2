@@ -40,13 +40,14 @@ public class Waypoint : MonoBehaviour
 	[ExecuteInEditMode]
 	public void CreateAndLink()
     {
+#if UNITY_EDITOR
 		var newWaypoint = Instantiate(this, transform.position, Quaternion.identity);
 		newWaypoint.name = "Waypoint";
 		newWaypoint.transform.parent = transform.parent;
 		newWaypoint.adyacent = new List<Waypoint>();
 		newWaypoint.LinkWaypoint(this);
 		Selection.SetActiveObjectWithContext(newWaypoint, newWaypoint);
-
+#endif
 	}
 
 	[ExecuteInEditMode]
