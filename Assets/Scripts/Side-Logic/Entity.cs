@@ -15,27 +15,25 @@ public class Entity : MonoBehaviour
 	public event Action<Entity, Item>		OnHitItem = delegate {};
 	public event Action<Entity, Waypoint, bool>	OnReachDestination = delegate {};
     public event Action OnReach = delegate { };
-
-	public List<Item> initialItems;
 	
-	List<Item> _items;
-	Vector3 _vel;
-	bool _onFloor;
+	private Vector3 _vel;
+	private bool _onFloor;
 
-	public float speed = 2f;
+    [SerializeField]
+	private float _speed = 2f;
 
-	Waypoint _gizmoRealTarget;
+    [SerializeField]
+    private float _gridRadius = 20f;
+    [SerializeField]
+    private SpatialGrid _targetGrid;
+
+    Waypoint _gizmoRealTarget;
 	IEnumerable<Waypoint> _gizmoPath;
-
-    #region GETTERS & SETTERS
-    public IEnumerable<Item> items { get { return _items; } }
-    #endregion
 
     #endregion
 
     void Awake()
     {
-        _items = new List<Item>();
         _vel = Vector3.zero;
         _onFloor = false;
     }
@@ -43,7 +41,7 @@ public class Entity : MonoBehaviour
     #region MOVEMENT & COLLISION
     void FixedUpdate()
     {
-        transform.Translate(Time.fixedDeltaTime * _vel * speed);
+        transform.Translate(Time.fixedDeltaTime * _vel * _speed);
     }
 
     public void Jump()
@@ -139,4 +137,22 @@ public class Entity : MonoBehaviour
         OnReachDestination(this, reachedDst, reachedDst == dstWp);
         OnReach();
 	}
+
+    public IEnumerable<GridEntity> Query()
+    {
+        return _targetGrid.Query(
+            transform.position + new Vector3(-_gridRadius, 0, -_gridRadius),
+            transform.position + new Vector3(_gridRadius, 0, _gridRadius),
+            x => {
+                var position2d = x - transform.position;
+                position2d.y = 0;
+                return position2d.sqrMagnitude < _gridRadius * _gridRadius;
+            });
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, _gridRadius);
+    }
 }

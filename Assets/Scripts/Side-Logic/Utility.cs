@@ -56,4 +56,9 @@ public static class Utility
             dict[key] = v = defaultFactory();
         return v;
     }
+
+    public static int ClampInt(int v, int min, int max)
+    {
+        return v < min ? min : (v > max ? max : v);
+    }
 }

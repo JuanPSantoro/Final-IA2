@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2211460958697204042}
-  - component: {fileID: 4784283481713177875}
   - component: {fileID: 6857415760853088236}
+  - component: {fileID: 9111727674182127883}
   m_Layer: 0
   m_Name: Farm
   m_TagString: Untagged
@@ -33,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4784283481713177875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7552919792917066557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d957ff249cae52141bf501abda2ad201, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destination: 3
 --- !u!114 &6857415760853088236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +52,19 @@ MonoBehaviour:
   _staminaAmount: 30
   _destinationAfterBuild: 3
   _inventory: {fileID: 0}
+--- !u!114 &9111727674182127883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7552919792917066557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac49b2b6d50c7a749bea4d8294713dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGrid: 0
 --- !u!1001 &809614578635013912
 PrefabInstance:
   m_ObjectHideFlags: 0

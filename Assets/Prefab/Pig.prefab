@@ -484,6 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2323376528736758004}
   - component: {fileID: 8371548908407893528}
+  - component: {fileID: 155479744183288566}
   m_Layer: 13
   m_Name: Pig
   m_TagString: Untagged
@@ -519,6 +520,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: 0
+--- !u!114 &155479744183288566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4644021569199628922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac49b2b6d50c7a749bea4d8294713dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGrid: 0
 --- !u!1 &4853919270669151043
 GameObject:
   m_ObjectHideFlags: 0

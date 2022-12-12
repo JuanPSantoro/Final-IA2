@@ -9,6 +9,7 @@ public class Navigation : MonoBehaviour
     public static Navigation instance;
     private List<Waypoint> _waypoints = new List<Waypoint>();
     private List<Item> _allItems = new List<Item>();
+    private SpatialGrid _grid => GetComponent<SpatialGrid>();
 	void Start ()
     {
         if (instance != null)
@@ -80,6 +81,24 @@ public class Navigation : MonoBehaviour
 
     public Item GetNearestItem(Vector3 from, Destination destination)
     {
+        var queredList = _grid.Query(transform.position + new Vector3(-20, 0, -20),
+            transform.position + new Vector3(20, 0, 20),
+            x =>
+            {
+                var position2d = x - transform.position;
+                position2d.y = 0;
+                return position2d.sqrMagnitude < 20 * 20;
+            }).Where(x =>
+            {
+                var itemType = GetComponent<Item>();
+                return itemType != null && itemType.destination == destination;
+            });
+        if (queredList.Any())
+        {
+            Debug.Log("FOUND USING GRID");
+            return queredList.OrderBy(x => Vector3.SqrMagnitude(x.transform.position - from)).FirstOrDefault().GetComponent<Item>();
+        }
+
         var filteredItems = GetItemsOfType(destination);
         var item = filteredItems.OrderBy(x => Vector3.SqrMagnitude(x.transform.position - from)).FirstOrDefault();
         return item;

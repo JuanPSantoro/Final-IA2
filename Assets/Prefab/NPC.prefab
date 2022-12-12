@@ -266,8 +266,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 4757119277836155268}
   inventory: {fileID: 4757119277836155268}
-  initialItems: []
-  speed: 15
+  _speed: 10
+  _gridRadius: 20
+  _targetGrid: {fileID: 0}
 --- !u!114 &4757119277836155266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +325,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e81303f5bdabf44a94e1d5abdcbb12c, type: 2}
   - {fileID: 11400000, guid: 78213a89760b3e149a65a6c41a85be70, type: 2}
   - {fileID: 11400000, guid: 7b5165ba6cda5684fa5764575863ef45, type: 2}
-  world: {fileID: 0}
 --- !u!1 &7378906213012823749
 GameObject:
   m_ObjectHideFlags: 0
