@@ -41,8 +41,8 @@ public class Inventory : MonoBehaviour
         SoundManager.instance.PlayOnPosition(_chopAudio, transform.position);
         EventManager.instance.TriggerEvent(EventType.CHOP_PARTICLE_PLAY, new object[] { transform.position });
         yield return new WaitForSeconds(1);
-        EventManager.instance.TriggerEvent(EventType.CHOP_PARTICLE_STOP);
         wood += 200;
+        EventManager.instance.TriggerEvent(EventType.CHOP_PARTICLE_STOP);
         EventManager.instance.TriggerEvent(EventType.STAMINA_SPENT, new object[] { 60f });
         EventManager.instance.TriggerEvent(EventType.WOOD_CHANGE, new object[] { wood });
         EventManager.instance.TriggerEvent(EventType.FSM_NEXT_STEP);

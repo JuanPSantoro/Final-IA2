@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public void Restart()
     {
+        EventManager.instance.RemoveAllEvents();
         SceneManager.LoadScene(0);
     }
 

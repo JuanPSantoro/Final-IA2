@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
 	public event Action<Movement>				OnHitFloor = delegate {};
 	public event Action<Movement, Transform>	OnHitWall = delegate {};
 	public event Action<Movement, Item>		OnHitItem = delegate {};
-	public event Action<Movement, Waypoint, bool>	OnReachDestination = delegate {};
+
     public event Action OnReach = delegate { };
 	
 	private Vector3 _vel;
@@ -132,7 +132,6 @@ public class Movement : MonoBehaviour
 		}
 		
 		_vel = Vector3.zero;
-        OnReachDestination(this, reachedDst, reachedDst == dstWp);
         OnReach();
 	}
 

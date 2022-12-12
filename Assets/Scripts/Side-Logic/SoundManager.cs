@@ -22,7 +22,6 @@ public class SoundManager : MonoBehaviour
         instance = this;
         _source.loop = true;
         _bgmSource.loop = true;
-        _bgmSource.playOnAwake = true;
         _bgmSource.clip = _bgmClip.clip;
         _bgmSource.volume = _bgmClip.volume;
         _bgmSource.Play();

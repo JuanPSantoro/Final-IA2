@@ -84,9 +84,9 @@ public class Sun : MonoBehaviour
             _daytimeTriggered = false;
         }
 
-        float xRot = Mathf.Lerp(0f, 360f, _timeOfDay / 24f);
+        float zRot = Mathf.Lerp(0f, 360f, _timeOfDay / 24f);
         Vector3 eulerAngles = _sun.transform.localRotation.eulerAngles;
-        eulerAngles.z = xRot;
+        eulerAngles.z = zRot;
         _sun.transform.localRotation = Quaternion.Euler(eulerAngles);
     }
 
