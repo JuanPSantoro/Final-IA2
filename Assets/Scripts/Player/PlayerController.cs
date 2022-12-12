@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private EventFSM<ActionEntity> _fsm;
-    private PlayerModel _model;
 
     private Inventory inventory;
     private Stamina stamina;
@@ -128,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
                 _plan = _plan.Skip(1);
                 var oldTarget = _target;
-                _target = Navigation.instance.GetNearestItem(transform.position, step.destination);
+                _target = entity.GetNearestItemOfType(step.destination);
                 _currentStep = step;
                 if (!_fsm.Feed(step.actionEntity))
                 {
@@ -138,7 +137,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                var destination = Navigation.instance.GetNearestItem(transform.position, Destination.IDLE_SPOT);
+                var destination = entity.GetNearestItemOfType(Destination.IDLE_SPOT);
                 entity.GoTo(destination.transform.position);
                 entity.OnReach += Finish;
             }

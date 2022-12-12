@@ -98,7 +98,7 @@ public class SpatialGrid : MonoBehaviour
             .Where(gridEnt =>
                 from.x <= gridEnt.transform.position.x && gridEnt.transform.position.x <= to.x &&
                 from.z <= gridEnt.transform.position.z && gridEnt.transform.position.z <= to.z
-            ).Where(selEntity => filterByPosition(selEntity.transform.position));
+            ).Where(selEntity => filterByPosition(selEntity.transform.position)).ToList();
     }
 
     public Tuple<int, int> GetPositionInGrid(Vector3 pos)

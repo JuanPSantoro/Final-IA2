@@ -12,9 +12,7 @@ public class Item : MonoBehaviour
 	}
 
     virtual public void ExecuteAction()
-    {
-
-    }
+    {}
 
 	private void OnDestroy()
     {

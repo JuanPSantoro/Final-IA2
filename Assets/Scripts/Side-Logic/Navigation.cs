@@ -79,23 +79,16 @@ public class Navigation : MonoBehaviour
         return _allItems.Where(item => item.destination == destination).ToList();
     }
 
-    public Item GetNearestItem(Vector3 from, Destination destination)
+    public Item GetNearestItem(Vector3 from, Vector3 to, Destination destination, Func<Vector3, bool> filter)
     {
-        var queredList = _grid.Query(transform.position + new Vector3(-20, 0, -20),
-            transform.position + new Vector3(20, 0, 20),
-            x =>
-            {
-                var position2d = x - transform.position;
-                position2d.y = 0;
-                return position2d.sqrMagnitude < 20 * 20;
-            }).Where(x =>
-            {
-                var itemType = GetComponent<Item>();
-                return itemType != null && itemType.destination == destination;
-            });
+        var queredList = _grid.Query(from, to, filter).Where(x =>
+        {
+            var itemType = x.gameObject.GetComponent<Item>();
+            return itemType != null && itemType.destination == destination;
+        });
+
         if (queredList.Any())
         {
-            Debug.Log("FOUND USING GRID");
             return queredList.OrderBy(x => Vector3.SqrMagnitude(x.transform.position - from)).FirstOrDefault().GetComponent<Item>();
         }
 

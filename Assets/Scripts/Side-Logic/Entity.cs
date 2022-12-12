@@ -24,8 +24,6 @@ public class Entity : MonoBehaviour
 
     [SerializeField]
     private float _gridRadius = 20f;
-    [SerializeField]
-    private SpatialGrid _targetGrid;
 
     Waypoint _gizmoRealTarget;
 	IEnumerable<Waypoint> _gizmoPath;
@@ -138,11 +136,11 @@ public class Entity : MonoBehaviour
         OnReach();
 	}
 
-    public IEnumerable<GridEntity> Query()
+    public Item GetNearestItemOfType(Destination itemDestination)
     {
-        return _targetGrid.Query(
-            transform.position + new Vector3(-_gridRadius, 0, -_gridRadius),
+        return Navigation.instance.GetNearestItem(transform.position + new Vector3(-_gridRadius, 0, -_gridRadius),
             transform.position + new Vector3(_gridRadius, 0, _gridRadius),
+            itemDestination,
             x => {
                 var position2d = x - transform.position;
                 position2d.y = 0;
